@@ -3,6 +3,19 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Mail, ExternalLink } from "lucide-react";
 
+const skills = [
+  { name: "Next.js", icon: "⚡", level: "Expert" },
+  { name: "TypeScript", icon: "💎", level: "Expert" },
+  { name: "Tailwind CSS", icon: "🎨", level: "Expert" },
+  { name: "React", icon: "⚛️", level: "Expert" },
+  { name: "Framer Motion", icon: "🌊", level: "Advanced" },
+  { name: "Prisma", icon: "🗄️", level: "Advanced" },
+  { name: "PostgreSQL", icon: "🐘", level: "Intermediate" },
+  { name: "Zustand", icon: "🔄", level: "Advanced" },
+  { name: "shadcn/ui", icon: "🧩", level: "Expert" },
+  { name: "Lenis Scroll", icon: "📜", level: "Advanced" },
+];
+
 export default function Home() {
   return (
     <main className="min-h-screen pt-20">
@@ -97,6 +110,77 @@ export default function Home() {
           >
             <div className="w-52 h-52 border border-border/40 rounded-full" />
           </motion.div>
+        </div>
+      </section>
+
+      {/* About + Skills Section */}
+      <section id="about" className="py-20 md:py-32 border-t border-border">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid lg:grid-cols-12 gap-16 items-start">
+            {/* Левая колонка — текст + фото */}
+            <div className="lg:col-span-5 space-y-8">
+              <div>
+                <h2 className="text-5xl md:text-6xl font-semibold tracking-tighter mb-6">
+                  Привет, я <span className="text-primary">Твоё Имя</span>
+                </h2>
+                <p className="text-xl text-muted-foreground leading-relaxed">
+                  Frontend-разработчик, который превращает идеи в быстрые,
+                  красивые и удобные интерфейсы. Обожаю чистый код, продуманную
+                  анимацию и современный стек.
+                </p>
+              </div>
+
+              <div className="flex flex-wrap gap-8 text-sm">
+                <div>
+                  <span className="block text-muted-foreground">Опыт</span>
+                  <span className="text-4xl font-semibold">4+ года</span>
+                </div>
+                <div>
+                  <span className="block text-muted-foreground">Проектов</span>
+                  <span className="text-4xl font-semibold">25+</span>
+                </div>
+                <div>
+                  <span className="block text-muted-foreground">Клиентов</span>
+                  <span className="text-4xl font-semibold">15+</span>
+                </div>
+              </div>
+
+              <p className="text-muted-foreground max-w-md">
+                Чистый код, внимание к деталям и производительность — мои
+                главные принципы.
+              </p>
+            </div>
+
+            {/* Правая колонка — Skills */}
+            <div className="lg:col-span-7">
+              <h3 className="text-sm uppercase tracking-widest text-muted-foreground mb-6">
+                Основные технологии и инструменты
+              </h3>
+
+              <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-4">
+                {skills.map((skill) => (
+                  <motion.div
+                    key={skill.name}
+                    whileHover={{ scale: 1.05, y: -4 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                    className="group bg-card border border-border hover:border-primary/30 rounded-3xl p-6 flex flex-col items-center gap-4 text-center transition-all duration-300"
+                  >
+                    <div className="w-12 h-12 flex items-center justify-center text-4xl group-hover:scale-110 transition-transform">
+                      {skill.icon}
+                    </div>
+                    <div>
+                      <div className="font-medium text-foreground">
+                        {skill.name}
+                      </div>
+                      <div className="text-xs text-muted-foreground">
+                        {skill.level}
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </main>
