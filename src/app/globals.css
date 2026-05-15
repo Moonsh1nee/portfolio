@@ -7,12 +7,13 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-sans);
+  --font-sans: var(--font-geist-sans);
+  --font-heading: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --font-heading: var(--font-space);
+  --font-inter: var(--font-inter);
 
-  /* Акценты — indigo/violet (строгий tech) */
-  --color-primary: oklch(0.623 0.214 263.5); /* indigo */
+  /* Accents */
+  --color-primary: oklch(0.623 0.214 263.5);
   --color-primary-foreground: oklch(0.985 0 0);
 
   --radius: 0.625rem;
@@ -128,11 +129,21 @@
 
 @layer base {
   * {
-    @apply border-border outline-ring/50 font-heading;
+    @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
+    font-feature-settings:
+      "rlig" 1,
+      "calt" 1;
   }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-geist-sans);
+    font-weight: 600;
+    letter-spacing: -0.025em;
+  }
+
   html {
     @apply font-sans;
   }
