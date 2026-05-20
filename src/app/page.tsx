@@ -1,5 +1,6 @@
 "use client";
 
+import PhotoCarousel from "@/components/PhotoCarousel";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -116,44 +117,8 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid md:grid-cols-12 gap-16 items-center">
             {/* Stacked Cards Carousel */}
-            <div className="md:col-span-5 relative">
-              <div className="relative h-[460px] w-full max-w-[380px] mx-auto">
-                {/* Карточка 1 */}
-                <motion.div
-                  className="absolute top-0 left-0 w-full h-full bg-zinc-900 rounded-3xl overflow-hidden border border-border shadow-2xl"
-                  style={{ rotate: -12, zIndex: 3 }}
-                  whileHover={{ rotate: -8, scale: 1.03 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  <div className="w-full h-full flex items-center justify-center text-8xl bg-gradient-to-br from-zinc-800 to-zinc-900">
-                    📸
-                  </div>
-                </motion.div>
-
-                {/* Карточка 2 */}
-                <motion.div
-                  className="absolute top-6 left-6 w-full h-full bg-zinc-900 rounded-3xl overflow-hidden border border-border shadow-2xl"
-                  style={{ rotate: -4, zIndex: 2 }}
-                  whileHover={{ rotate: -2, scale: 1.03 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  <div className="w-full h-full flex items-center justify-center text-8xl bg-gradient-to-br from-zinc-800 to-zinc-900">
-                    💻
-                  </div>
-                </motion.div>
-
-                {/* Карточка 3 (основная) */}
-                <motion.div
-                  className="absolute top-12 left-12 w-full h-full bg-zinc-900 rounded-3xl overflow-hidden border border-border shadow-2xl"
-                  style={{ rotate: 0, zIndex: 1 }}
-                  whileHover={{ scale: 1.04 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  <div className="w-full h-full flex items-center justify-center text-9xl bg-gradient-to-br from-zinc-800 to-zinc-900">
-                    👨‍💻
-                  </div>
-                </motion.div>
-              </div>
+            <div className="md:col-span-5">
+              <PhotoCarousel />
             </div>
 
             {/* Текстовая часть */}
@@ -215,6 +180,524 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* SKILLS SECTION */}
+      <section id="skills" className="py-24 md:py-32 border-t border-border">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-5xl md:text-6xl font-semibold tracking-[-0.04em] mb-4">
+              Навыки и технологии
+            </h2>
+            <p className="text-muted-foreground text-xl">
+              Инструменты, с которыми я работаю каждый день
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Frontend */}
+            <div>
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-8 h-8 bg-blue-500/10 text-blue-500 rounded-2xl flex items-center justify-center">
+                  ⚛️
+                </div>
+                <h3 className="uppercase text-sm font-semibold tracking-widest text-blue-400">
+                  Frontend
+                </h3>
+              </div>
+              <div className="space-y-5">
+                {[
+                  { name: "Next.js", level: "Expert", progress: 95 },
+                  { name: "TypeScript", level: "Expert", progress: 95 },
+                  { name: "React", level: "Expert", progress: 90 },
+                  { name: "Tailwind CSS", level: "Expert", progress: 95 },
+                  { name: "Framer Motion", level: "Advanced", progress: 85 },
+                ].map((skill, i) => (
+                  <motion.div
+                    key={skill.name}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.06 }}
+                    whileHover={{ scale: 1.02, y: -3 }}
+                    className="bg-card border border-border rounded-3xl p-5 hover:border-blue-500/30 transition-all group"
+                  >
+                    <div className="flex justify-between items-center mb-3">
+                      <div className="font-medium text-lg">{skill.name}</div>
+                      <div className="text-xs font-medium text-blue-400">
+                        {skill.level}
+                      </div>
+                    </div>
+                    <div className="h-2 bg-muted rounded-full overflow-hidden">
+                      <motion.div
+                        className="h-full bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full"
+                        initial={{ width: 0 }}
+                        whileInView={{ width: `${skill.progress}%` }}
+                        transition={{ duration: 1.2, ease: "easeOut" }}
+                      />
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            {/* Tools & Backend */}
+            <div>
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-8 h-8 bg-emerald-500/10 text-emerald-500 rounded-2xl flex items-center justify-center">
+                  🛠️
+                </div>
+                <h3 className="uppercase text-sm font-semibold tracking-widest text-emerald-400">
+                  Tools & Backend
+                </h3>
+              </div>
+              <div className="space-y-5">
+                {[
+                  { name: "Prisma", level: "Advanced", progress: 85 },
+                  { name: "PostgreSQL", level: "Intermediate", progress: 75 },
+                  { name: "Zustand", level: "Advanced", progress: 90 },
+                  { name: "TanStack Query", level: "Advanced", progress: 80 },
+                  { name: "Git & GitHub", level: "Expert", progress: 95 },
+                ].map((skill, i) => (
+                  <motion.div
+                    key={skill.name}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.06 + 0.15 }}
+                    whileHover={{ scale: 1.02, y: -3 }}
+                    className="bg-card border border-border rounded-3xl p-5 hover:border-emerald-500/30 transition-all group"
+                  >
+                    <div className="flex justify-between items-center mb-3">
+                      <div className="font-medium text-lg">{skill.name}</div>
+                      <div className="text-xs font-medium text-emerald-400">
+                        {skill.level}
+                      </div>
+                    </div>
+                    <div className="h-2 bg-muted rounded-full overflow-hidden">
+                      <motion.div
+                        className="h-full bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full"
+                        initial={{ width: 0 }}
+                        whileInView={{ width: `${skill.progress}%` }}
+                        transition={{ duration: 1.2, ease: "easeOut" }}
+                      />
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            {/* Другое */}
+            <div>
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-8 h-8 bg-violet-500/10 text-violet-500 rounded-2xl flex items-center justify-center">
+                  ✦
+                </div>
+                <h3 className="uppercase text-sm font-semibold tracking-widest text-violet-400">
+                  Другое
+                </h3>
+              </div>
+              <div className="space-y-5">
+                {[
+                  { name: "UI/UX", level: "Advanced", progress: 80 },
+                  { name: "Анимации", level: "Advanced", progress: 85 },
+                  { name: "Performance", level: "Expert", progress: 90 },
+                  { name: "Figma", level: "Intermediate", progress: 70 },
+                  { name: "Тимворкинг", level: "Expert", progress: 95 },
+                ].map((skill, i) => (
+                  <motion.div
+                    key={skill.name}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.06 + 0.3 }}
+                    whileHover={{ scale: 1.02, y: -3 }}
+                    className="bg-card border border-border rounded-3xl p-5 hover:border-violet-500/30 transition-all group"
+                  >
+                    <div className="flex justify-between items-center mb-3">
+                      <div className="font-medium text-lg">{skill.name}</div>
+                      <div className="text-xs font-medium text-violet-400">
+                        {skill.level}
+                      </div>
+                    </div>
+                    <div className="h-2 bg-muted rounded-full overflow-hidden">
+                      <motion.div
+                        className="h-full bg-gradient-to-r from-violet-500 to-purple-500 rounded-full"
+                        initial={{ width: 0 }}
+                        whileInView={{ width: `${skill.progress}%` }}
+                        transition={{ duration: 1.2, ease: "easeOut" }}
+                      />
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FEATURED PROJECTS SECTION */}
+      <section id="projects" className="py-24 md:py-32 border-t border-border">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="flex justify-between items-end mb-12">
+            <div>
+              <h2 className="text-5xl md:text-6xl font-semibold tracking-[-0.04em]">
+                Избранные проекты
+              </h2>
+              <p className="text-muted-foreground text-xl mt-2">
+                То, чем я горжусь больше всего
+              </p>
+            </div>
+            <a
+              href="#"
+              className="hidden md:flex items-center gap-2 text-primary hover:text-primary/80 transition-colors"
+            >
+              Все проекты <ArrowRight size={18} />
+            </a>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* Проект 1 */}
+            <motion.div
+              whileHover={{ y: -12 }}
+              className="group bg-card border border-border rounded-3xl overflow-hidden"
+            >
+              <div className="h-64 bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center text-7xl">
+                🚀
+              </div>
+              <div className="p-8">
+                <div className="flex justify-between items-start mb-4">
+                  <div>
+                    <h3 className="text-2xl font-semibold">MoonChat</h3>
+                    <p className="text-muted-foreground">
+                      Telegram-подобный мессенджер
+                    </p>
+                  </div>
+                  <span className="text-xs font-medium px-3 py-1 bg-emerald-500/10 text-emerald-400 rounded-full">
+                    2026
+                  </span>
+                </div>
+                <div className="flex gap-2 text-xs text-muted-foreground">
+                  <div className="bg-muted px-3 py-1 rounded-full">Next.js</div>
+                  <div className="bg-muted px-3 py-1 rounded-full">
+                    TypeScript
+                  </div>
+                  <div className="bg-muted px-3 py-1 rounded-full">
+                    Socket.io
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Проект 2 */}
+            <motion.div
+              whileHover={{ y: -12 }}
+              className="group bg-card border border-border rounded-3xl overflow-hidden"
+            >
+              <div className="h-64 bg-gradient-to-br from-purple-800 to-violet-900 flex items-center justify-center text-7xl">
+                📊
+              </div>
+              <div className="p-8">
+                <div className="flex justify-between items-start mb-4">
+                  <div>
+                    <h3 className="text-2xl font-semibold">Portfolio 2026</h3>
+                    <p className="text-muted-foreground">
+                      Это портфолио, которое ты сейчас смотришь
+                    </p>
+                  </div>
+                  <span className="text-xs font-medium px-3 py-1 bg-violet-500/10 text-violet-400 rounded-full">
+                    В разработке
+                  </span>
+                </div>
+                <div className="flex gap-2 text-xs text-muted-foreground">
+                  <div className="bg-muted px-3 py-1 rounded-full">
+                    Next.js 16
+                  </div>
+                  <div className="bg-muted px-3 py-1 rounded-full">
+                    Framer Motion
+                  </div>
+                  <div className="bg-muted px-3 py-1 rounded-full">
+                    Tailwind
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* EXPERIENCE / TIMELINE SECTION */}
+      <section className="py-24 md:py-32 border-t border-border">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16">
+            <h2 className="text-5xl md:text-6xl font-semibold tracking-[-0.04em]">
+              Опыт и путь
+            </h2>
+            <p className="text-muted-foreground text-xl mt-3 md:mt-0">
+              Как я развивался как разработчик
+            </p>
+          </div>
+
+          <div className="relative">
+            {/* Вертикальная линия */}
+            <div className="absolute left-8 top-6 bottom-6 w-px bg-border hidden md:block" />
+
+            <div className="space-y-16">
+              {/* Опыт 1 */}
+              <div className="relative flex flex-col md:flex-row gap-8 md:gap-12">
+                <div className="md:w-40 flex-shrink-0">
+                  <div className="inline-flex items-center text-center justify-center w-16 h-16 rounded-3xl bg-card border border-border text-xs font-semibold">
+                    2024 <br />—<br /> сейчас
+                  </div>
+                </div>
+                <div className="flex-1 bg-card border border-border rounded-3xl p-8 md:p-10">
+                  <div className="flex flex-wrap justify-between gap-4 mb-6">
+                    <div>
+                      <h3 className="text-2xl font-semibold">
+                        Senior Frontend Developer
+                      </h3>
+                      <p className="text-muted-foreground">
+                        Компания / Проект (или Freelance)
+                      </p>
+                    </div>
+                    <span className="text-xs px-5 py-2.5 bg-emerald-500/10 text-emerald-400 rounded-3xl font-medium self-start">
+                      Full-time
+                    </span>
+                  </div>
+                  <p className="text-muted-foreground leading-relaxed mb-6">
+                    Разработка высоконагруженных интерфейсов на Next.js 16,
+                    сложная бизнес-логика, производительность и пользовательский
+                    опыт.
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    <span className="text-xs px-4 py-2 bg-muted rounded-3xl">
+                      Next.js 16
+                    </span>
+                    <span className="text-xs px-4 py-2 bg-muted rounded-3xl">
+                      TypeScript
+                    </span>
+                    <span className="text-xs px-4 py-2 bg-muted rounded-3xl">
+                      Framer Motion
+                    </span>
+                    <span className="text-xs px-4 py-2 bg-muted rounded-3xl">
+                      Prisma
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Опыт 2 */}
+              <div className="relative flex flex-col md:flex-row gap-8 md:gap-12">
+                <div className="md:w-40 flex-shrink-0">
+                  <div className="inline-flex items-center text-center justify-center w-16 h-16 rounded-3xl bg-card border border-border text-xs font-semibold">
+                    2023 <br />—<br /> 2024
+                  </div>
+                </div>
+                <div className="flex-1 bg-card border border-border rounded-3xl p-8 md:p-10">
+                  <div className="flex flex-wrap justify-between gap-4 mb-6">
+                    <div>
+                      <h3 className="text-2xl font-semibold">
+                        Frontend Developer
+                      </h3>
+                      <p className="text-muted-foreground">Компания / Проект</p>
+                    </div>
+                  </div>
+                  <p className="text-muted-foreground leading-relaxed mb-6">
+                    Создание современных интерфейсов, работа с состоянием
+                    (Zustand, TanStack Query), оптимизация производительности и
+                    внедрение анимаций.
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    <span className="text-xs px-4 py-2 bg-muted rounded-3xl">
+                      React
+                    </span>
+                    <span className="text-xs px-4 py-2 bg-muted rounded-3xl">
+                      TypeScript
+                    </span>
+                    <span className="text-xs px-4 py-2 bg-muted rounded-3xl">
+                      Tailwind
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Опыт 3 (можно добавить ещё) */}
+              <div className="relative flex flex-col md:flex-row gap-8 md:gap-12">
+                <div className="md:w-40 flex-shrink-0">
+                  <div className="inline-flex items-center text-center justify-center w-16 h-16 rounded-3xl bg-card border border-border text-xs font-semibold">
+                    2022 <br />—<br /> 2023
+                  </div>
+                </div>
+                <div className="flex-1 bg-card border border-border rounded-3xl p-8 md:p-10">
+                  <div>
+                    <h3 className="text-2xl font-semibold">
+                      Junior Frontend Developer
+                    </h3>
+                    <p className="text-muted-foreground">Первая компания</p>
+                  </div>
+                  <p className="text-muted-foreground leading-relaxed mt-6">
+                    Начало пути. Изучение современных инструментов, участие в
+                    коммерческих проектах.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CONTACT SECTION */}
+      <section id="contact" className="py-24 md:py-32 border-t border-border">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid md:grid-cols-12 gap-16 items-center">
+            {/* Левая колонка */}
+            <div className="md:col-span-5">
+              <h2 className="text-5xl md:text-6xl font-semibold tracking-[-0.04em] mb-6">
+                Давай работать вместе
+              </h2>
+              <p className="text-xl text-muted-foreground leading-relaxed">
+                Ищу интересные проекты и сотрудничество.
+                <br />
+                Буду рад обсудить вашу задачу.
+              </p>
+
+              <div className="mt-12 space-y-6">
+                <div>
+                  <div className="text-sm text-muted-foreground">Email</div>
+                  <a
+                    href="mailto:your@email.com"
+                    className="text-2xl font-medium hover:text-primary transition-colors"
+                  >
+                    your@email.com
+                  </a>
+                </div>
+                <div>
+                  <div className="text-sm text-muted-foreground">Telegram</div>
+                  <a
+                    href="https://t.me/yourusername"
+                    className="text-2xl font-medium hover:text-primary transition-colors"
+                  >
+                    @yourusername
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* Правая колонка — форма */}
+            <div className="md:col-span-7">
+              <div className="bg-card border border-border rounded-3xl p-8 md:p-10">
+                <form className="space-y-8">
+                  <div className="grid grid-cols-2 gap-6">
+                    <div>
+                      <label className="block text-sm text-muted-foreground mb-2">
+                        Имя
+                      </label>
+                      <input
+                        type="text"
+                        className="w-full bg-background border border-border rounded-2xl px-5 py-4 focus:outline-none focus:border-primary transition-colors"
+                        placeholder="Владислав"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm text-muted-foreground mb-2">
+                        Email или Telegram
+                      </label>
+                      <input
+                        type="text"
+                        className="w-full bg-background border border-border rounded-2xl px-5 py-4 focus:outline-none focus:border-primary transition-colors"
+                        placeholder="example@email.com"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm text-muted-foreground mb-2">
+                      Сообщение
+                    </label>
+                    <textarea
+                      rows={6}
+                      className="w-full bg-background border border-border rounded-3xl px-5 py-4 focus:outline-none focus:border-primary transition-colors resize-none"
+                      placeholder="Расскажите о вашем проекте..."
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    className="w-full py-5 bg-primary text-primary-foreground rounded-3xl font-medium text-lg hover:bg-primary/90 transition-all active:scale-[0.98]"
+                  >
+                    Отправить сообщение
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer className="bg-card border-t border-border py-16">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-8">
+            {/* Логотип и копирайт */}
+            <div className="flex items-center gap-3">
+              <div className="w-9 h-9 rounded-2xl bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center text-white font-bold text-2xl">
+                V
+              </div>
+              <div>
+                <span className="font-semibold text-2xl tracking-tight">
+                  Vladislav
+                </span>
+                <p className="text-xs text-muted-foreground">
+                  © 2026 • Все права защищены
+                </p>
+              </div>
+            </div>
+
+            {/* Навигация */}
+            <div className="flex flex-wrap gap-x-8 gap-y-2 text-sm font-medium">
+              <a href="#about" className="hover:text-primary transition-colors">
+                Обо мне
+              </a>
+              <a
+                href="#skills"
+                className="hover:text-primary transition-colors"
+              >
+                Навыки
+              </a>
+              <a
+                href="#projects"
+                className="hover:text-primary transition-colors"
+              >
+                Проекты
+              </a>
+              <a
+                href="#experience"
+                className="hover:text-primary transition-colors"
+              >
+                Опыт
+              </a>
+              <a
+                href="#contact"
+                className="hover:text-primary transition-colors"
+              >
+                Контакт
+              </a>
+            </div>
+
+            {/* Социальные сети */}
+            <div className="flex gap-6 text-muted-foreground">
+              <a href="#" className="hover:text-foreground transition-colors">
+                GitHub
+              </a>
+              <a href="#" className="hover:text-foreground transition-colors">
+                LinkedIn
+              </a>
+              <a href="#" className="hover:text-foreground transition-colors">
+                Telegram
+              </a>
+              <a href="#" className="hover:text-foreground transition-colors">
+                Instagram
+              </a>
+            </div>
+          </div>
+        </div>
+      </footer>
     </main>
   );
 }

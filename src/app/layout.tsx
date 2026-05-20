@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import Navbar from "@/components/navigation/Navbar";
 import { cn } from "@/lib/utils";
+import LenisProvider from "@/components/providers/LenisProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -50,6 +51,7 @@ export default function RootLayout({
           enableSystem={false}
         >
           <Navbar />
+          <LenisProvider />
           {children}
         </ThemeProvider>
       </body>
