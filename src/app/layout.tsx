@@ -1,10 +1,11 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import Navbar from "@/components/navigation/Navbar";
 import { cn } from "@/lib/utils";
 import LenisProvider from "@/components/providers/LenisProvider";
+import { siteUrl } from "@/lib/site";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,11 +27,33 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
+const title = "Владислав | Frontend Developer";
+const description =
+  "Senior Frontend Engineer — Next.js, TypeScript, современные интерфейсы";
+
 export const metadata: Metadata = {
-  title: "Владислав | Frontend Developer",
-  description:
-    "Senior Frontend Engineer — Next.js, TypeScript, современные интерфейсы",
+  metadataBase: new URL(siteUrl),
+  title,
+  description,
   icons: { icon: "/favicon.ico" },
+  openGraph: {
+    title,
+    description,
+    type: "website",
+    locale: "ru_RU",
+    siteName: title,
+    url: siteUrl,
+  },
+  twitter: {
+    card: "summary",
+    title,
+    description,
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#0a0a0a",
+  colorScheme: "dark",
 };
 
 export default function RootLayout({

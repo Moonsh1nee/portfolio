@@ -69,10 +69,10 @@ export default function PhotoCarousel() {
             onDragEnd={handleDragEnd}
           >
             <div
-              className={`w-full h-full bg-gradient-to-br ${photo.gradient} flex items-center justify-center text-white`}
+              className={`w-full h-full bg-linear-to-br ${photo.gradient} flex items-center justify-center text-white`}
             >
               {/* Позже сюда можно поставить <Image src={...} /> */}
-              <div className="text-8xl opacity-20">📷</div>
+              <div aria-hidden="true" className="text-8xl opacity-20">📷</div>
             </div>
           </motion.div>
         );
