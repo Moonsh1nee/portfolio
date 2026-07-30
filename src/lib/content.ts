@@ -95,6 +95,7 @@ export const projects: Project[] = [
       "Stripe",
     ],
     liveUrl: "https://getgrip.ru",
+    repoUrl: "https://github.com/Moonsh1nee/habitforge-frontend",
   },
   {
     title: "MoonChat",
