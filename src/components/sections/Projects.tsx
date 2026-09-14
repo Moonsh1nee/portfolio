@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import { projects } from "@/lib/content";
+import { projects, GITHUB_URL } from "@/lib/content";
 
 export default function Projects() {
   return (
@@ -18,7 +18,9 @@ export default function Projects() {
             </p>
           </div>
           <a
-            href="#"
+            href={GITHUB_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="hidden md:flex items-center gap-2 text-primary hover:text-primary/80 transition-colors"
           >
             Все проекты <ArrowRight aria-hidden="true" size={18} />

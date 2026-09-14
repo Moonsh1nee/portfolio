@@ -79,9 +79,9 @@ export const projects: Project[] = [
   {
     title: "GetGrip",
     description:
-      "Персональный «второй мозг»: задачи, привычки, финансы, тренировки, питание, дневник и аналитика в одном приложении",
+      "Персональный «второй мозг»: задачи, привычки, цели, дневник, календарь и аналитика в одном приложении",
     longDescription:
-      "Full-stack SaaS-продукт с веб-, мобильным (Expo/React Native) клиентами и async-бэкендом на FastAPI. 8+ модулей, кастомизируемый дашборд из 18 виджетов, real-time обновления через WebSocket, геймификация (XP/ачивменты), корреляции привычек с настроением, Stripe-биллинг с free/pro планами.",
+      "Full-stack SaaS-продукт с веб-, мобильным (Expo/React Native) клиентами и async-бэкендом на FastAPI. Кастомизируемый дашборд из виджетов, push-уведомления, геймификация (XP/ачивменты), синхронизация с Google Calendar, Stripe-биллинг с free/pro планами, собственный OAuth2-сервер авторизации — через него в GetGrip заходят Wisely и Fuel. Задеплоен на своём VPS (nginx, systemd) с полноценным security hardening.",
     emoji: "🧠",
     imageGradientClass: "from-violet-800 to-indigo-950",
     badge: "Live",
@@ -98,22 +98,52 @@ export const projects: Project[] = [
     repoUrl: "https://github.com/Moonsh1nee/habitforge-frontend",
   },
   {
-    title: "MoonChat",
-    description: "Telegram-подобный мессенджер",
-    emoji: "🚀",
-    imageGradientClass: "from-zinc-800 to-zinc-900",
-    badge: "2026",
+    title: "Fuel",
+    description: "Трекер питания и тренировок с распознаванием штрихкодов",
+    longDescription:
+      "Логирование еды с автоматическим пересчётом БЖУ по граммам, сканер штрихкодов (@zxing/browser) и поиск продуктов через Open Food Facts, конструктор собственных составных блюд, автоопределение личных рекордов в тренировках. Алгоритмическая генерация меню на месяц с защитой от повторов и автосборкой списка покупок.",
+    emoji: "🥗",
+    imageGradientClass: "from-emerald-800 to-teal-950",
+    badge: "Готово",
     badgeAccentClass: "bg-emerald-500/10 text-emerald-400",
-    tags: ["Next.js", "TypeScript", "Socket.io"],
+    tags: ["Next.js 16", "Prisma 7", "SQLite", "TypeScript"],
+    repoUrl: "https://github.com/Moonsh1nee/Fuel",
   },
   {
-    title: "Portfolio 2026",
-    description: "Это портфолио, которое ты сейчас смотришь",
-    emoji: "📊",
-    imageGradientClass: "from-purple-800 to-violet-900",
+    title: "Wisely",
+    description: "Персональный трекер финансов с мультивалютными бюджетами",
+    longDescription:
+      "Бюджеты и графики расходов по категориям, повторяющиеся транзакции, отдельная модель переводов между счетами (double-entry), накопительные цели с прогресс-барами. Вход через собственный аккаунт GetGrip (OAuth2).",
+    emoji: "💰",
+    imageGradientClass: "from-amber-800 to-orange-950",
+    badge: "Готово",
+    badgeAccentClass: "bg-emerald-500/10 text-emerald-400",
+    tags: ["Next.js 16", "Prisma 7", "SQLite", "TypeScript"],
+    repoUrl: "https://github.com/Moonsh1nee/Wisely",
+  },
+  {
+    title: "Sift",
+    description: "AI-скринер вакансий для hh.ru",
+    longDescription:
+      "Подтягивает вакансии с hh.ru, оценивает соответствие резюме через Claude API (fit-score, совпадающие/недостающие навыки), генерирует сопроводительные письма. CRM-пайплайн статусов отклика с напоминаниями о фоллоу-апе. hh.ru закрыл публичный API — интеграция работает через HTML-парсинг (cheerio) той же разметки, что видит браузер.",
+    emoji: "🎯",
+    imageGradientClass: "from-blue-800 to-cyan-950",
+    badge: "Готово",
+    badgeAccentClass: "bg-emerald-500/10 text-emerald-400",
+    tags: ["Next.js 16", "Claude API", "Prisma 7", "Cheerio"],
+    repoUrl: "https://github.com/Moonsh1nee/Sift",
+  },
+  {
+    title: "Cadence",
+    description: "Трекер подписок с визуальной шкалой платежей",
+    longDescription:
+      "Таймлайн подписок с масштабированием по датам и разведением пересекающихся платежей по дорожкам, расчёт биллинг-циклов, полный жизненный цикл подписки (активна → пауза → отмена → возврат).",
+    emoji: "📅",
+    imageGradientClass: "from-fuchsia-800 to-purple-950",
     badge: "В разработке",
     badgeAccentClass: "bg-violet-500/10 text-violet-400",
-    tags: ["Next.js 16", "Framer Motion", "Tailwind"],
+    tags: ["Next.js 16", "Prisma 7", "Base UI", "TypeScript"],
+    repoUrl: "https://github.com/Moonsh1nee/Cadence",
   },
 ];
 
@@ -128,35 +158,20 @@ export interface ExperienceEntry {
 
 export const experience: ExperienceEntry[] = [
   {
-    period: "2024 — сейчас",
-    role: "Senior Frontend Developer",
-    place: "Компания / Проект (или Freelance)",
-    employmentType: "Full-time",
+    period: "2025",
+    role: "Frontend-разработчик",
+    place: "Фриланс-проект, соло",
+    employmentType: "Фриланс",
     description:
-      "Разработка высоконагруженных интерфейсов на Next.js 16, сложная бизнес-логика, производительность и пользовательский опыт.",
-    tags: ["Next.js 16", "TypeScript", "Framer Motion", "Prisma"],
-  },
-  {
-    period: "2023 — 2024",
-    role: "Frontend Developer",
-    place: "Компания / Проект",
-    description:
-      "Создание современных интерфейсов, работа с состоянием (Zustand, TanStack Query), оптимизация производительности и внедрение анимаций.",
-    tags: ["React", "TypeScript", "Tailwind"],
-  },
-  {
-    period: "2022 — 2023",
-    role: "Junior Frontend Developer",
-    place: "Первая компания",
-    description:
-      "Начало пути. Изучение современных инструментов, участие в коммерческих проектах.",
-    tags: [],
+      "Самостоятельно разработал и задеплоил интернет-магазин на React: каталог и оформление заказа без встроенной оплаты — данные заявки уходят Telegram-ботом оператору, который дальше ведёт клиента лично. Единственный разработчик на проекте — от вёрстки и логики до деплоя и последующей поддержки. Заняло около 3 месяцев.",
+    tags: ["React", "Telegram Bot API", "Деплой"],
   },
 ];
 
-export const CONTACT_EMAIL = "your@email.com";
-export const CONTACT_TELEGRAM_HANDLE = "yourusername";
+export const CONTACT_EMAIL = "moonsh1ne.vlad@yandex.ru";
+export const CONTACT_TELEGRAM_HANDLE = "Moonsh1ne_OP";
 export const CONTACT_TELEGRAM_URL = `https://t.me/${CONTACT_TELEGRAM_HANDLE}`;
+export const GITHUB_URL = "https://github.com/Moonsh1nee";
 
 export interface SocialLink {
   label: string;
@@ -164,8 +179,6 @@ export interface SocialLink {
 }
 
 export const socialLinks: SocialLink[] = [
-  { label: "GitHub", href: "#" },
-  { label: "LinkedIn", href: "#" },
-  { label: "Telegram", href: "#" },
-  { label: "Instagram", href: "#" },
+  { label: "GitHub", href: GITHUB_URL },
+  { label: "Telegram", href: CONTACT_TELEGRAM_URL },
 ];

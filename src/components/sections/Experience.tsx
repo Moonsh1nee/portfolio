@@ -8,10 +8,10 @@ export default function Experience() {
       <div className="max-w-6xl mx-auto px-6">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16">
           <h2 className="text-5xl md:text-6xl font-semibold tracking-[-0.04em]">
-            Опыт и путь
+            Опыт
           </h2>
           <p className="text-muted-foreground text-xl mt-3 md:mt-0">
-            Как я развивался как разработчик
+            Коммерческий опыт помимо личных проектов
           </p>
         </div>
 
@@ -24,7 +24,9 @@ export default function Experience() {
 
           <div className="space-y-16">
             {experience.map((entry) => {
-              const [periodFrom, periodTo] = entry.period.split(" — ");
+              const [periodFrom, periodTo] = entry.period.includes(" — ")
+                ? entry.period.split(" — ")
+                : [entry.period, null];
 
               return (
                 <div
@@ -33,7 +35,13 @@ export default function Experience() {
                 >
                   <div className="md:w-40 shrink-0">
                     <div className="inline-flex items-center text-center justify-center w-16 h-16 rounded-3xl bg-card border border-border text-xs font-semibold">
-                      {periodFrom} <br />—<br /> {periodTo}
+                      {periodTo ? (
+                        <>
+                          {periodFrom} <br />—<br /> {periodTo}
+                        </>
+                      ) : (
+                        periodFrom
+                      )}
                     </div>
                   </div>
                   <div className="flex-1 bg-card border border-border rounded-3xl p-8 md:p-10">

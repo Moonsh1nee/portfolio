@@ -126,9 +126,11 @@ export default function Navbar() {
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
               className="p-3 rounded-2xl hover:bg-muted hover:scale-110 active:scale-95 transition-all duration-200"
               aria-label={
-                theme === "dark"
-                  ? "Переключить на светлую тему"
-                  : "Переключить на тёмную тему"
+                mounted
+                  ? theme === "dark"
+                    ? "Переключить на светлую тему"
+                    : "Переключить на тёмную тему"
+                  : "Переключить тему"
               }
             >
               {mounted &&

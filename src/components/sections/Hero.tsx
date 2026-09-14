@@ -5,7 +5,7 @@ import { ArrowRight } from "lucide-react";
 import { useEffect, useState } from "react";
 
 const typingText =
-  "Frontend-разработчик, создающий быстрые, красивые и масштабируемые интерфейсы с помощью современных технологий.";
+  "Full-stack разработчик, который в одиночку доводит продукты от идеи до продакшена — интерфейс, бэкенд и деплой.";
 
 export default function Hero() {
   const [displayedText, setDisplayedText] = useState("");

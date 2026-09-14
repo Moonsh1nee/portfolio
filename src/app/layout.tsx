@@ -27,9 +27,9 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
-const title = "Владислав | Frontend Developer";
+const title = "Владислав | Full-stack Developer";
 const description =
-  "Senior Frontend Engineer — Next.js, TypeScript, современные интерфейсы";
+  "Full-stack разработчик — Next.js, TypeScript, FastAPI. Соло-проекты от идеи до продакшена.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

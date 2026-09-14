@@ -21,35 +21,45 @@ export default function About() {
                 Обо мне
               </h2>
               <p className="text-xl text-muted-foreground leading-relaxed">
-                Я Frontend-разработчик с более чем 4-летним опытом создания
-                современных веб-приложений. Специализируюсь на Next.js,
-                TypeScript и сложных интерфейсах с акцентом на
-                производительность и пользовательский опыт.
+                Я full-stack разработчик, который доводит продукты в одиночку
+                — от интерфейса на Next.js и TypeScript до бэкенда, базы
+                данных и деплоя на собственный сервер. За плечами один
+                коммерческий фриланс-проект и несколько полноценных
+                pet-продуктов, каждый из которых собран, задеплоен и
+                поддерживается самостоятельно.
               </p>
             </div>
 
             <div className="grid grid-cols-2 gap-8 pt-4">
               <div>
-                <div className="text-muted-foreground text-sm mb-1">Опыт</div>
-                <div className="text-4xl font-semibold">4+ года</div>
+                <div className="text-muted-foreground text-sm mb-1">
+                  Формат
+                </div>
+                <div className="text-2xl font-semibold">
+                  Соло, от идеи до прода
+                </div>
               </div>
               <div>
                 <div className="text-muted-foreground text-sm mb-1">
-                  Проектов
+                  Подход
                 </div>
-                <div className="text-4xl font-semibold">25+</div>
+                <div className="text-2xl font-semibold">
+                  Full-stack: UI, БД, инфраструктура
+                </div>
               </div>
               <div>
                 <div className="text-muted-foreground text-sm mb-1">
-                  Клиентов
+                  На проде
                 </div>
-                <div className="text-4xl font-semibold">15+</div>
+                <div className="text-2xl font-semibold">
+                  getgrip.ru — свой VPS
+                </div>
               </div>
               <div>
                 <div className="text-muted-foreground text-sm mb-1">
                   Основной стек
                 </div>
-                <div className="text-4xl font-semibold">Next.js + TS</div>
+                <div className="text-2xl font-semibold">Next.js + TS</div>
               </div>
             </div>
 
