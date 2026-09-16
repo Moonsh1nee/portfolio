@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { projects, GITHUB_URL } from "@/lib/content";
@@ -34,11 +35,27 @@ export default function Projects() {
               whileHover={{ y: -12 }}
               className="group bg-card border border-border rounded-3xl overflow-hidden"
             >
-              <div
-                className={`h-64 bg-linear-to-br ${project.imageGradientClass} flex items-center justify-center text-7xl`}
-              >
-                <span aria-hidden="true">{project.emoji}</span>
-              </div>
+              {project.screenshots && project.screenshots.length > 0 ? (
+                <div className="grid grid-cols-2 gap-0.5 h-64 bg-border">
+                  {project.screenshots.map((src) => (
+                    <div key={src} className="relative overflow-hidden">
+                      <Image
+                        src={src}
+                        alt={`Скриншот ${project.title}`}
+                        fill
+                        sizes="(min-width: 768px) 25vw, 50vw"
+                        className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                      />
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div
+                  className={`h-64 bg-linear-to-br ${project.imageGradientClass} flex items-center justify-center text-7xl`}
+                >
+                  <span aria-hidden="true">{project.emoji}</span>
+                </div>
+              )}
               <div className="p-8">
                 <div className="flex justify-between items-start mb-4">
                   <div>

@@ -68,6 +68,7 @@ export interface Project {
   longDescription?: string;
   emoji: string;
   imageGradientClass: string;
+  screenshots?: string[];
   badge: string;
   badgeAccentClass: string;
   tags: string[];
@@ -84,8 +85,8 @@ export const projects: Project[] = [
       "Full-stack SaaS-продукт с веб-, мобильным (Expo/React Native) клиентами и async-бэкендом на FastAPI. Кастомизируемый дашборд из виджетов, push-уведомления, геймификация (XP/ачивменты), синхронизация с Google Calendar, Stripe-биллинг с free/pro планами, собственный OAuth2-сервер авторизации — через него в GetGrip заходят Wisely и Fuel. Задеплоен на своём VPS (nginx, systemd) с полноценным security hardening.",
     emoji: "🧠",
     imageGradientClass: "from-violet-800 to-indigo-950",
-    badge: "Live",
-    badgeAccentClass: "bg-emerald-500/10 text-emerald-400",
+    badge: "Скоро на демо",
+    badgeAccentClass: "bg-violet-500/10 text-violet-400",
     tags: [
       "Next.js 16",
       "React Native",
@@ -94,7 +95,6 @@ export const projects: Project[] = [
       "Redis",
       "Stripe",
     ],
-    liveUrl: "https://getgrip.ru",
     repoUrl: "https://github.com/Moonsh1nee/habitforge-frontend",
   },
   {
@@ -104,6 +104,7 @@ export const projects: Project[] = [
       "Логирование еды с автоматическим пересчётом БЖУ по граммам, сканер штрихкодов (@zxing/browser) и поиск продуктов через Open Food Facts, конструктор собственных составных блюд, автоопределение личных рекордов в тренировках. Алгоритмическая генерация меню на месяц с защитой от повторов и автосборкой списка покупок.",
     emoji: "🥗",
     imageGradientClass: "from-emerald-800 to-teal-950",
+    screenshots: ["/projects/fuel-1.png", "/projects/fuel-2.png"],
     badge: "Готово",
     badgeAccentClass: "bg-emerald-500/10 text-emerald-400",
     tags: ["Next.js 16", "Prisma 7", "SQLite", "TypeScript"],
@@ -116,6 +117,7 @@ export const projects: Project[] = [
       "Бюджеты и графики расходов по категориям, повторяющиеся транзакции, отдельная модель переводов между счетами (double-entry), накопительные цели с прогресс-барами. Вход через собственный аккаунт GetGrip (OAuth2).",
     emoji: "💰",
     imageGradientClass: "from-amber-800 to-orange-950",
+    screenshots: ["/projects/wisely-1.png", "/projects/wisely-2.png"],
     badge: "Готово",
     badgeAccentClass: "bg-emerald-500/10 text-emerald-400",
     tags: ["Next.js 16", "Prisma 7", "SQLite", "TypeScript"],
@@ -128,6 +130,7 @@ export const projects: Project[] = [
       "Подтягивает вакансии с hh.ru, оценивает соответствие резюме через Claude API (fit-score, совпадающие/недостающие навыки), генерирует сопроводительные письма. CRM-пайплайн статусов отклика с напоминаниями о фоллоу-апе. hh.ru закрыл публичный API — интеграция работает через HTML-парсинг (cheerio) той же разметки, что видит браузер.",
     emoji: "🎯",
     imageGradientClass: "from-blue-800 to-cyan-950",
+    screenshots: ["/projects/sift-1.png", "/projects/sift-2.png"],
     badge: "Готово",
     badgeAccentClass: "bg-emerald-500/10 text-emerald-400",
     tags: ["Next.js 16", "Claude API", "Prisma 7", "Cheerio"],
@@ -140,6 +143,7 @@ export const projects: Project[] = [
       "Таймлайн подписок с масштабированием по датам и разведением пересекающихся платежей по дорожкам, расчёт биллинг-циклов, полный жизненный цикл подписки (активна → пауза → отмена → возврат).",
     emoji: "📅",
     imageGradientClass: "from-fuchsia-800 to-purple-950",
+    screenshots: ["/projects/cadence-1.png", "/projects/cadence-2.png"],
     badge: "В разработке",
     badgeAccentClass: "bg-violet-500/10 text-violet-400",
     tags: ["Next.js 16", "Prisma 7", "Base UI", "TypeScript"],
