@@ -5,7 +5,7 @@ import { ArrowRight } from "lucide-react";
 import { useEffect, useState } from "react";
 
 const typingText =
-  "Full-stack разработчик, который в одиночку доводит продукты от идеи до продакшена — интерфейс, бэкенд и деплой.";
+  "Full-stack разработчик: строю продукты от идеи до продакшена — интерфейс, бэкенд, деплой — и легко встраиваюсь в команду.";
 
 export default function Hero() {
   const [displayedText, setDisplayedText] = useState("");
