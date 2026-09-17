@@ -1,11 +1,17 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
-import { projects, GITHUB_URL } from "@/lib/content";
+import { AnimatePresence, motion } from "framer-motion";
+import { ArrowRight, Images } from "lucide-react";
+import { projects, GITHUB_URL, type Project } from "@/lib/content";
+import ProjectLightbox from "@/components/sections/ProjectLightbox";
+
+const PREVIEW_COUNT = 2;
 
 export default function Projects() {
+  const [active, setActive] = useState<{ project: Project; index: number } | null>(null);
+
   return (
     <section id="projects" className="py-24 md:py-32 border-t border-border">
       <div className="max-w-6xl mx-auto px-6">
@@ -37,17 +43,32 @@ export default function Projects() {
             >
               {project.screenshots && project.screenshots.length > 0 ? (
                 <div className="grid grid-cols-2 gap-0.5 h-64 bg-border">
-                  {project.screenshots.map((src) => (
-                    <div key={src} className="relative overflow-hidden">
-                      <Image
-                        src={src}
-                        alt={`Скриншот ${project.title}`}
-                        fill
-                        sizes="(min-width: 768px) 25vw, 50vw"
-                        className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                      />
-                    </div>
-                  ))}
+                  {project.screenshots.slice(0, PREVIEW_COUNT).map((src, i) => {
+                    const remaining = project.screenshots!.length - PREVIEW_COUNT;
+                    const isLastPreview = i === PREVIEW_COUNT - 1 && remaining > 0;
+                    return (
+                      <button
+                        key={src}
+                        type="button"
+                        onClick={() => setActive({ project, index: i })}
+                        aria-label={`Открыть галерею ${project.title}, фото ${i + 1}`}
+                        className="relative overflow-hidden cursor-zoom-in"
+                      >
+                        <Image
+                          src={src}
+                          alt={`Скриншот ${project.title}`}
+                          fill
+                          sizes="(min-width: 768px) 25vw, 50vw"
+                          className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                        />
+                        {isLastPreview && (
+                          <div className="absolute inset-0 bg-black/60 flex items-center justify-center gap-1.5 text-white text-sm font-medium">
+                            <Images aria-hidden="true" size={16} />+{remaining}
+                          </div>
+                        )}
+                      </button>
+                    );
+                  })}
                 </div>
               ) : (
                 <div
@@ -111,6 +132,16 @@ export default function Projects() {
           ))}
         </div>
       </div>
+
+      <AnimatePresence>
+        {active && (
+          <ProjectLightbox
+            project={active.project}
+            initialIndex={active.index}
+            onClose={() => setActive(null)}
+          />
+        )}
+      </AnimatePresence>
     </section>
   );
 }
