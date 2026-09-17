@@ -180,6 +180,25 @@ export const projects: Project[] = [
     tags: ["Next.js 16", "Prisma 7", "Base UI", "TypeScript"],
     repoUrl: "https://github.com/Moonsh1nee/Cadence",
   },
+  {
+    title: "Muiraje",
+    description: "Интернет-магазин на заказ с необычным ретро-дизайном",
+    longDescription:
+      "Коммерческая разработка для реального заказчика — не личный проект. Дизайн-концепция полностью клиентская: витрина стилизована под рабочий стол Windows начала 2000-х — папки-категории, окна с заголовками и кнопками свернуть/закрыть, «браузер» с адресной строкой для страниц коллекций, даже пасхалка в духе BSOD на 404. Моя часть — верстка этого нестандартного интерфейса и весь full-stack: Next.js + Redux Toolkit на фронте, NestJS + Prisma + PostgreSQL с JWT-авторизацией, email-уведомлениями и приёмом заказов через Telegram-бота на бэке, админка для управления каталогом. Сайт временно не работает — у заказчика сейчас пауза в бизнесе.",
+    emoji: "🖥️",
+    imageGradientClass: "from-slate-700 to-blue-950",
+    screenshots: [
+      "/projects/muiraje-1.png",
+      "/projects/muiraje-2.png",
+      "/projects/muiraje-3.png",
+      "/projects/muiraje-4.png",
+      "/projects/muiraje-5.png",
+    ],
+    badge: "Клиентский проект",
+    badgeAccentClass: "bg-zinc-500/10 text-zinc-400",
+    tags: ["Next.js", "NestJS", "Prisma", "PostgreSQL", "JWT", "SCSS"],
+    repoUrl: "https://github.com/Moonsh1nee/muiraje_Front",
+  },
 ];
 
 export interface ExperienceEntry {
@@ -194,12 +213,12 @@ export interface ExperienceEntry {
 export const experience: ExperienceEntry[] = [
   {
     period: "2025",
-    role: "Frontend-разработчик",
-    place: "Фриланс-проект, соло",
+    role: "Full-stack разработчик",
+    place: "Фриланс-проект, соло (Muiraje)",
     employmentType: "Фриланс",
     description:
-      "Самостоятельно разработал и задеплоил интернет-магазин на React: каталог и оформление заказа без встроенной оплаты — данные заявки уходят Telegram-ботом оператору, который дальше ведёт клиента лично. Единственный разработчик на проекте — от вёрстки и логики до деплоя и последующей поддержки. Заняло около 3 месяцев.",
-    tags: ["React", "Telegram Bot API", "Деплой"],
+      "Самостоятельно разработал и задеплоил интернет-магазин на заказ: Next.js + Redux Toolkit на фронте, NestJS + Prisma + PostgreSQL с JWT-авторизацией на бэке. Дизайн — полностью клиентская концепция, нестандартная: витрина стилизована под рабочий стол Windows начала 2000-х, пришлось верстать нетиповой, детально проработанный интерфейс, а не типовой e-commerce шаблон. Оформление заказа без встроенной оплаты — заявка уходит Telegram-ботом оператору, который дальше ведёт клиента лично. Единственный разработчик на проекте — от вёрстки и бэкенда до деплоя и последующей поддержки. Заняло около 3 месяцев.",
+    tags: ["Next.js", "NestJS", "Prisma", "PostgreSQL", "SCSS"],
   },
 ];
 
