@@ -40,8 +40,8 @@ export const skillCategories: SkillCategory[] = [
     gradientClass: "from-emerald-500 to-teal-500",
     hoverBorderClass: "hover:border-emerald-500/30",
     items: [
-      { name: "FastAPI", level: "Advanced", progress: 85 },
-      { name: "NestJS", level: "Advanced", progress: 85 },
+      { name: "FastAPI", level: "Basic", progress: 45 },
+      { name: "NestJS", level: "Intermediate", progress: 60 },
       { name: "Node.js", level: "Advanced", progress: 85 },
       { name: "Express", level: "Intermediate", progress: 75 },
       { name: "Prisma ORM", level: "Advanced", progress: 90 },
