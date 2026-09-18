@@ -1,13 +1,13 @@
 "use client";
 
+import Image from "next/image";
 import { motion, PanInfo } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
 
 const photos = [
-  { id: 1, gradient: "from-indigo-500 to-violet-600" },
-  { id: 2, gradient: "from-purple-500 to-fuchsia-600" },
-  { id: 3, gradient: "from-blue-500 to-cyan-600" },
-  { id: 4, gradient: "from-violet-500 to-pink-600" },
+  { id: 1, src: "/about/vladislav-1.jpg" },
+  { id: 2, src: "/about/vladislav-2.jpg" },
+  { id: 3, src: "/about/vladislav-3.jpg" },
 ];
 
 export default function PhotoCarousel() {
@@ -68,12 +68,15 @@ export default function PhotoCarousel() {
             dragConstraints={{ left: 0, right: 0 }}
             onDragEnd={handleDragEnd}
           >
-            <div
-              className={`w-full h-full bg-linear-to-br ${photo.gradient} flex items-center justify-center text-white`}
-            >
-              {/* Позже сюда можно поставить <Image src={...} /> */}
-              <div aria-hidden="true" className="text-8xl opacity-20">📷</div>
-            </div>
+            <Image
+              src={photo.src}
+              alt="Владислав"
+              fill
+              sizes="380px"
+              priority={isActive}
+              draggable={false}
+              className="object-cover pointer-events-none"
+            />
           </motion.div>
         );
       })}

@@ -34,13 +34,13 @@ export default function Experience() {
                   className="relative flex flex-col md:flex-row gap-8 md:gap-12"
                 >
                   <div className="md:w-40 shrink-0">
-                    <div className="inline-flex items-center text-center justify-center w-16 h-16 rounded-3xl bg-card border border-border text-xs font-semibold">
-                      {periodTo ? (
+                    <div className="inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-card border border-border text-sm font-semibold whitespace-nowrap">
+                      <span>{periodFrom}</span>
+                      {periodTo && (
                         <>
-                          {periodFrom} <br />—<br /> {periodTo}
+                          <span className="text-muted-foreground font-normal">—</span>
+                          <span>{periodTo}</span>
                         </>
-                      ) : (
-                        periodFrom
                       )}
                     </div>
                   </div>

@@ -1,8 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Download } from "lucide-react";
 import { useEffect, useState } from "react";
+import { RESUME_URL } from "@/lib/content";
 
 const typingText =
   "Full-stack разработчик: строю продукты от идеи до продакшена — интерфейс, бэкенд, деплой — и легко встраиваюсь в команду.";
@@ -80,6 +81,19 @@ export default function Hero() {
               className="px-8 py-4 border border-border hover:bg-muted rounded-2xl font-medium text-lg flex items-center justify-center transition"
             >
               Написать мне
+            </a>
+
+            <a
+              href={RESUME_URL}
+              download
+              className="group px-8 py-4 border border-border hover:bg-muted rounded-2xl font-medium text-lg flex items-center justify-center gap-2.5 transition"
+            >
+              Резюме
+              <Download
+                aria-hidden="true"
+                size={18}
+                className="group-hover:translate-y-0.5 transition-transform"
+              />
             </a>
           </div>
         </div>

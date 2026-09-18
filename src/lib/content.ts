@@ -234,6 +234,7 @@ export interface SocialLink {
 }
 
 export const VK_URL = "https://vk.ru/moonsh1ne_vk";
+export const RESUME_URL = "/Akimov_Vladislav_Resume.docx";
 
 export const socialLinks: SocialLink[] = [
   { label: "GitHub", href: GITHUB_URL },
