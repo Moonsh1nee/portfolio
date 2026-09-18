@@ -16,7 +16,7 @@ export default function Skills() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 gap-x-12 gap-y-16">
           {skillCategories.map((category, categoryIndex) => (
             <div key={category.title}>
               <div className="flex items-center gap-3 mb-6">
