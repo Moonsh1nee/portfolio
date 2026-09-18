@@ -3,7 +3,7 @@ import About from "@/components/sections/About";
 import Skills from "@/components/sections/Skills";
 import Projects from "@/components/sections/Projects";
 import Experience from "@/components/sections/Experience";
-import ContactForm from "@/components/sections/ContactForm";
+import Contact from "@/components/sections/Contact";
 import Footer from "@/components/sections/Footer";
 
 export default function Home() {
@@ -14,7 +14,7 @@ export default function Home() {
       <Skills />
       <Projects />
       <Experience />
-      <ContactForm />
+      <Contact />
       <Footer />
     </main>
   );

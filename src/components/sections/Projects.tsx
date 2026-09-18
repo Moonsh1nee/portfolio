@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, Images } from "lucide-react";
+import { ArrowRight, Images, KeyRound } from "lucide-react";
 import { projects, GITHUB_URL, type Project } from "@/lib/content";
 import ProjectLightbox from "@/components/sections/ProjectLightbox";
 
@@ -103,6 +103,16 @@ export default function Projects() {
                     </div>
                   ))}
                 </div>
+                {project.demoCredentials && (
+                  <div className="flex items-center gap-2 text-xs text-muted-foreground bg-muted px-3 py-2 rounded-2xl mb-4">
+                    <KeyRound aria-hidden="true" size={14} className="shrink-0" />
+                    <span>
+                      Демо-доступ: <span className="font-medium text-foreground">{project.demoCredentials.email}</span>
+                      {" / "}
+                      <span className="font-medium text-foreground">{project.demoCredentials.password}</span>
+                    </span>
+                  </div>
+                )}
                 {(project.liveUrl || project.repoUrl) && (
                   <div className="flex gap-4 pt-2">
                     {project.liveUrl && (

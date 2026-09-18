@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
-import { ChevronLeft, ChevronRight, X, ArrowRight, ZoomIn } from "lucide-react";
+import { ChevronLeft, ChevronRight, X, ArrowRight, ZoomIn, KeyRound } from "lucide-react";
 import type { Project } from "@/lib/content";
 
 export default function ProjectLightbox({
@@ -168,6 +168,16 @@ export default function ProjectLightbox({
               </span>
             ))}
           </div>
+          {project.demoCredentials && (
+            <div className="flex items-center gap-2 text-sm text-white/70 bg-white/10 px-4 py-2.5 rounded-2xl mb-6 w-fit">
+              <KeyRound aria-hidden="true" size={15} className="shrink-0" />
+              <span>
+                Демо-доступ: <span className="font-medium text-white">{project.demoCredentials.email}</span>
+                {" / "}
+                <span className="font-medium text-white">{project.demoCredentials.password}</span>
+              </span>
+            </div>
+          )}
           <div className="flex gap-5">
             {project.liveUrl && (
               <a

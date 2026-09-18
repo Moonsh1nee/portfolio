@@ -74,6 +74,7 @@ export interface Project {
   tags: string[];
   liveUrl?: string;
   repoUrl?: string;
+  demoCredentials?: { email: string; password: string };
 }
 
 export const projects: Project[] = [
@@ -104,6 +105,7 @@ export const projects: Project[] = [
     ],
     liveUrl: "https://demo.getgrip.ru",
     repoUrl: "https://github.com/Moonsh1nee/habitforge-frontend",
+    demoCredentials: { email: "demo@getgrip.ru", password: "DemoPass!2026" },
   },
   {
     title: "Fuel",
@@ -197,7 +199,6 @@ export const projects: Project[] = [
     badge: "Клиентский проект",
     badgeAccentClass: "bg-zinc-500/10 text-zinc-400",
     tags: ["Next.js", "NestJS", "Prisma", "PostgreSQL", "JWT", "SCSS"],
-    repoUrl: "https://github.com/Moonsh1nee/muiraje_Front",
   },
 ];
 
@@ -212,12 +213,12 @@ export interface ExperienceEntry {
 
 export const experience: ExperienceEntry[] = [
   {
-    period: "2025",
+    period: "сен 2024 — мар 2025",
     role: "Full-stack разработчик",
     place: "Фриланс-проект, соло (Muiraje)",
     employmentType: "Фриланс",
     description:
-      "Самостоятельно разработал и задеплоил интернет-магазин на заказ: Next.js + Redux Toolkit на фронте, NestJS + Prisma + PostgreSQL с JWT-авторизацией на бэке. Дизайн — полностью клиентская концепция, нестандартная: витрина стилизована под рабочий стол Windows начала 2000-х, пришлось верстать нетиповой, детально проработанный интерфейс, а не типовой e-commerce шаблон. Оформление заказа без встроенной оплаты — заявка уходит Telegram-ботом оператору, который дальше ведёт клиента лично. Единственный разработчик на проекте — от вёрстки и бэкенда до деплоя и последующей поддержки. Заняло около 3 месяцев.",
+      "Разработал и запустил под ключ интернет-магазин на заказ: Next.js + Redux Toolkit на фронте, NestJS + Prisma + PostgreSQL с JWT-авторизацией на бэке. Дизайн — полностью клиентская концепция, нестандартная: витрина стилизована под рабочий стол Windows начала 2000-х, пришлось верстать нетиповой, детально проработанный интерфейс, а не типовой e-commerce шаблон. Оформление заказа без встроенной оплаты — заявка уходит Telegram-ботом оператору, который дальше ведёт клиента лично. Полный цикл на VPS: nginx, SSL, CI-подобный процесс деплоя. Единственный разработчик на проекте — от вёрстки и бэкенда до деплоя и последующей поддержки. Около полугода активной разработки.",
     tags: ["Next.js", "NestJS", "Prisma", "PostgreSQL", "SCSS"],
   },
 ];
@@ -232,7 +233,10 @@ export interface SocialLink {
   href: string;
 }
 
+export const VK_URL = "https://vk.ru/moonsh1ne_vk";
+
 export const socialLinks: SocialLink[] = [
   { label: "GitHub", href: GITHUB_URL },
   { label: "Telegram", href: CONTACT_TELEGRAM_URL },
+  { label: "VK", href: VK_URL },
 ];
