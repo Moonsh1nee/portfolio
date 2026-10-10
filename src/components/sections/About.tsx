@@ -50,10 +50,10 @@ export default function About() {
               </div>
               <div>
                 <div className="text-muted-foreground text-sm mb-1">
-                  На проде
+                  Деплой
                 </div>
                 <div className="text-2xl font-semibold">
-                  getgrip.ru — свой VPS
+                  VPS, nginx, Docker, CI/CD
                 </div>
               </div>
               <div>

@@ -29,7 +29,7 @@ const geistMono = Geist_Mono({
 
 const title = "Владислав | Full-stack Developer";
 const description =
-  "Full-stack разработчик — Next.js, TypeScript, FastAPI. Соло-проекты от идеи до продакшена.";
+  "Full-stack разработчик — Next.js, TypeScript, FastAPI. От идеи до продакшена, соло и в команде.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

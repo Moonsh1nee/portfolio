@@ -104,7 +104,7 @@ export const projects: Project[] = [
     description:
       "Персональный «второй мозг»: задачи, привычки, цели, дневник, календарь и аналитика в одном приложении",
     longDescription:
-      "Full-stack SaaS-продукт с веб-, мобильным (Expo/React Native) клиентами и async-бэкендом на FastAPI. Кастомизируемый дашборд из виджетов, push-уведомления, геймификация (XP/ачивменты), синхронизация с Google Calendar, Stripe-биллинг с free/pro планами, собственный OAuth2-сервер авторизации — через него в GetGrip заходят Wisely и Fuel. Задеплоен на своём VPS (nginx, systemd) с полноценным security hardening.",
+      "Full-stack SaaS-продукт с веб-, мобильным (Expo/React Native) клиентами и async-бэкендом на FastAPI. Кастомизируемый дашборд из виджетов, push-уведомления, геймификация (XP/ачивменты), синхронизация с Google Calendar, Stripe-биллинг с free/pro планами, собственный OAuth2-сервер авторизации — через него в GetGrip заходят Wisely и Fuel. Был задеплоен на своём VPS (nginx, systemd, security hardening) — сейчас сервер выключен, демо временно недоступно.",
     emoji: "🧠",
     imageGradientClass: "from-violet-800 to-indigo-950",
     screenshots: [
@@ -114,8 +114,8 @@ export const projects: Project[] = [
       "/projects/getgrip-4.png",
       "/projects/getgrip-5.png",
     ],
-    badge: "Live",
-    badgeAccentClass: "bg-emerald-500/10 text-emerald-400",
+    badge: "Демо офлайн",
+    badgeAccentClass: "bg-zinc-500/10 text-zinc-400",
     tags: [
       "Next.js 16",
       "React Native",
@@ -124,9 +124,7 @@ export const projects: Project[] = [
       "Redis",
       "Stripe",
     ],
-    liveUrl: "https://demo.getgrip.ru",
     repoUrl: "https://github.com/Moonsh1nee/habitforge-frontend",
-    demoCredentials: { email: "demo@getgrip.ru", password: "DemoPass!2026" },
   },
   {
     title: "Fuel",

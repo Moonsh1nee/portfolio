@@ -1,6 +1,6 @@
 # Portfolio
 
-Personal portfolio — single-page, dark-theme by default, built with Next.js App Router. Live at [getgrip.ru](https://getgrip.ru).
+Personal portfolio — single-page, dark-theme by default, built with Next.js App Router. Served as a static export via GitHub Pages at [getgrip.ru](https://getgrip.ru).
 
 ## Stack
 
@@ -25,6 +25,8 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ## Deployment
 
-Deployed on a self-managed VPS: systemd service (`npm start` behind nginx) + certbot for TLS. `NEXT_PUBLIC_SITE_URL` (see `src/lib/site.ts`) is set to `https://getgrip.ru` in production — it feeds `metadataBase`, Open Graph tags, `robots.ts` and `sitemap.ts`.
+Built with `output: "export"` (`next.config.ts`) — a fully static site, no Node runtime needed, so image optimization is disabled (`images.unoptimized: true`; images are pre-resized at source instead).
 
-To redeploy: `git pull && npm install && npm run build && systemctl restart portfolio` on the server.
+`.github/workflows/deploy.yml` builds on every push to `master` and publishes `out/` to GitHub Pages via `actions/deploy-pages`. `public/CNAME` points the Pages deployment at the custom domain `getgrip.ru` (DNS: A records to GitHub Pages' IPs). `NEXT_PUBLIC_SITE_URL` (see `src/lib/site.ts`) is set to `https://getgrip.ru` in the workflow — it feeds `metadataBase`, Open Graph tags, `robots.ts` and `sitemap.ts`.
+
+To preview the static export locally: `npm run build && npx serve out`.
