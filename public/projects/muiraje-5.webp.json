@@ -1,0 +1,4 @@
+{
+  "prompt": "Origin: real screenshot of the Muiraje storefront (client project), captured 2026-10-11 at 1440x900 from a local build restored from the production DB backup (catalog data and assets only, no customer data); Next.js dev overlay removed from the DOM before capture; PNG->WebP q84 via sharp. Page: cart.",
+  "createdAt": "2026-10-11T13:59:10.338Z"
+}

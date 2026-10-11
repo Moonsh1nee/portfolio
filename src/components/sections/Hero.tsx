@@ -75,7 +75,7 @@ export default function Hero() {
             className="animate-frame-in w-[88%] [animation-delay:120ms]"
           />
           <WindowFrame
-            src="/projects/muiraje-3.webp"
+            src="/projects/muiraje-1.webp"
             alt=""
             label="Muiraje — карточка товара"
             sizes="(min-width: 1024px) 420px, 70vw"
