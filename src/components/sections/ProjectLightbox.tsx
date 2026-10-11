@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { AnimatePresence, motion } from "framer-motion";
-import { ChevronLeft, ChevronRight, X, ArrowRight, ZoomIn, KeyRound } from "lucide-react";
+import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import type { Project } from "@/lib/content";
+
+const SWIPE_THRESHOLD = 50;
 
 export default function ProjectLightbox({
   project,
@@ -15,193 +16,121 @@ export default function ProjectLightbox({
   initialIndex: number;
   onClose: () => void;
 }) {
-  const images = project.screenshots ?? [];
+  const dialogRef = useRef<HTMLDialogElement>(null);
+  const swipeStart = useRef<number | null>(null);
   const [index, setIndex] = useState(initialIndex);
-  const [zoomed, setZoomed] = useState(false);
-
-  const goTo = (next: number) => {
-    setZoomed(false);
-    setIndex((next + images.length) % images.length);
-  };
+  const shots = project.screenshots;
+  const count = shots.length;
+  const go = (delta: number) => setIndex((i) => (i + delta + count) % count);
 
   useEffect(() => {
+    const dialog = dialogRef.current;
+    if (!dialog) return;
+    const opener = document.activeElement as HTMLElement | null;
+    dialog.showModal();
     document.body.style.overflow = "hidden";
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-      if (e.key === "ArrowRight") goTo(index + 1);
-      if (e.key === "ArrowLeft") goTo(index - 1);
-    };
-    window.addEventListener("keydown", handleKeyDown);
     return () => {
-      document.body.style.overflow = "unset";
-      window.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "";
+      opener?.focus();
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [index]);
+  }, []);
+
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "ArrowRight") setIndex((i) => (i + 1) % count);
+      if (e.key === "ArrowLeft") setIndex((i) => (i - 1 + count) % count);
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [count]);
+
+  const shot = shots[index];
 
   return (
-    <motion.div
-      role="dialog"
-      aria-modal="true"
-      aria-label={`${project.title} — подробнее`}
-      className="fixed inset-0 z-60 bg-black/90 backdrop-blur-md flex items-center justify-center p-4 md:p-8"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      onClick={onClose}
+    <dialog
+      ref={dialogRef}
+      aria-label={`${project.title}: скриншоты`}
+      onCancel={(e) => {
+        e.preventDefault();
+        onClose();
+      }}
+      onClick={(e) => e.target === e.currentTarget && onClose()}
+      className="m-0 h-dvh max-h-none w-screen max-w-none bg-transparent p-0 text-white backdrop:bg-black/90 backdrop:backdrop-blur-sm"
     >
-      <button
-        onClick={onClose}
-        aria-label="Закрыть"
-        className="absolute top-4 right-4 md:top-6 md:right-6 p-3 rounded-2xl bg-white/10 hover:bg-white/20 text-white transition-colors z-10"
-      >
-        <X aria-hidden="true" size={22} />
-      </button>
-
       <div
-        className="w-full max-w-6xl max-h-full grid md:grid-cols-[1.4fr_1fr] gap-6 md:gap-10 items-start"
-        onClick={(e) => e.stopPropagation()}
+        className="flex h-full flex-col"
+        onClick={(e) => e.target === e.currentTarget && onClose()}
+        onPointerDown={(e) => {
+          swipeStart.current = e.clientX;
+        }}
+        onPointerUp={(e) => {
+          if (swipeStart.current === null) return;
+          const dx = e.clientX - swipeStart.current;
+          swipeStart.current = null;
+          if (Math.abs(dx) > SWIPE_THRESHOLD) go(dx < 0 ? 1 : -1);
+        }}
       >
-        {/* Image carousel */}
-        <div className="relative">
-          <div
-            className={`relative w-full h-[45vh] md:h-[70vh] rounded-2xl overflow-hidden bg-card border border-white/10 ${
-              zoomed ? "cursor-zoom-out" : "cursor-zoom-in"
-            }`}
-            onClick={() => setZoomed((z) => !z)}
+        <div className="flex items-center justify-between gap-4 px-4 py-3 sm:px-6">
+          <p className="min-w-0 truncate text-sm">
+            <span className="font-medium">{project.title}</span>
+            <span className="ml-3 font-mono text-white/60 tabular">
+              {index + 1} / {count}
+            </span>
+          </p>
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label="Закрыть"
+            className="grid size-11 shrink-0 place-items-center rounded-md bg-white/10 transition-colors duration-150 hover:bg-white/20"
           >
-            {images.length > 0 && (
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={images[index]}
-                  className="absolute inset-0"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <Image
-                    src={images[index]}
-                    alt={`Скриншот ${project.title} ${index + 1}`}
-                    fill
-                    sizes="(min-width: 768px) 60vw, 100vw"
-                    className={`transition-transform duration-300 ${
-                      zoomed ? "object-contain scale-150" : "object-contain scale-100"
-                    }`}
-                  />
-                </motion.div>
-              </AnimatePresence>
-            )}
+            <X aria-hidden size={20} />
+          </button>
+        </div>
 
-            {!zoomed && (
-              <div className="absolute bottom-3 right-3 flex items-center gap-1.5 text-xs text-white/80 bg-black/50 px-3 py-1.5 rounded-full pointer-events-none">
-                <ZoomIn aria-hidden="true" size={14} />
-                Увеличить
-              </div>
-            )}
+        <div className="relative flex min-h-0 flex-1 items-center justify-center px-2 sm:px-16" onClick={(e) => e.target === e.currentTarget && onClose()}>
+          <div className="relative aspect-16/10 max-h-full w-full max-w-6xl touch-pan-y">
+            <Image key={shot.src} src={shot.src} alt={shot.alt} fill sizes="100vw" className="object-contain" draggable={false} />
           </div>
 
-          {images.length > 1 && (
+          {count > 1 && (
             <>
               <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  goTo(index - 1);
-                }}
-                aria-label="Предыдущее фото"
-                className="absolute left-2 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-black/50 hover:bg-black/70 text-white transition-colors"
+                type="button"
+                onClick={() => go(-1)}
+                aria-label="Предыдущий скриншот"
+                className="absolute left-2 hidden size-11 place-items-center rounded-md bg-white/10 transition-colors duration-150 hover:bg-white/20 sm:grid sm:left-4"
               >
-                <ChevronLeft aria-hidden="true" size={20} />
+                <ChevronLeft aria-hidden size={22} />
               </button>
               <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  goTo(index + 1);
-                }}
-                aria-label="Следующее фото"
-                className="absolute right-2 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-black/50 hover:bg-black/70 text-white transition-colors"
+                type="button"
+                onClick={() => go(1)}
+                aria-label="Следующий скриншот"
+                className="absolute right-2 hidden size-11 place-items-center rounded-md bg-white/10 transition-colors duration-150 hover:bg-white/20 sm:grid sm:right-4"
               >
-                <ChevronRight aria-hidden="true" size={20} />
+                <ChevronRight aria-hidden size={22} />
               </button>
-
-              <div className="flex items-center justify-center gap-2 mt-4">
-                {images.map((src, i) => (
-                  <button
-                    key={src}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      goTo(i);
-                    }}
-                    aria-label={`Фото ${i + 1} из ${images.length}`}
-                    aria-current={i === index}
-                    className={`h-1.5 rounded-full transition-all ${
-                      i === index ? "w-6 bg-white" : "w-1.5 bg-white/30 hover:bg-white/50"
-                    }`}
-                  />
-                ))}
-              </div>
             </>
           )}
         </div>
 
-        {/* Project info */}
-        <div className="text-white max-h-[70vh] overflow-y-auto pr-1">
-          <div className="flex items-center gap-3 mb-3">
-            <span aria-hidden="true" className="text-3xl">
-              {project.emoji}
-            </span>
-            <h3 className="text-3xl font-semibold tracking-[-0.03em]">{project.title}</h3>
+        <div className="flex items-center justify-between gap-4 px-4 pt-3 pb-5 sm:px-6">
+          <div aria-live="polite" className="max-w-3xl">
+            <p className="text-sm font-medium text-white">{shot.alt}</p>
+            <p className="mt-1 text-sm leading-relaxed text-white/70">{shot.note}</p>
           </div>
-          <span
-            className={`inline-block text-xs font-medium px-3 py-1 rounded-full mb-5 ${project.badgeAccentClass}`}
-          >
-            {project.badge}
-          </span>
-          <p className="text-white/70 text-base leading-relaxed mb-4">{project.description}</p>
-          {project.longDescription && (
-            <p className="text-white/60 text-sm leading-relaxed mb-6">{project.longDescription}</p>
-          )}
-          <div className="flex flex-wrap gap-2 mb-6">
-            {project.tags.map((tag) => (
-              <span key={tag} className="text-xs px-3 py-1 rounded-full bg-white/10 text-white/80">
-                {tag}
-              </span>
-            ))}
-          </div>
-          {project.demoCredentials && (
-            <div className="flex items-center gap-2 text-sm text-white/70 bg-white/10 px-4 py-2.5 rounded-2xl mb-6 w-fit">
-              <KeyRound aria-hidden="true" size={15} className="shrink-0" />
-              <span>
-                Демо-доступ: <span className="font-medium text-white">{project.demoCredentials.email}</span>
-                {" / "}
-                <span className="font-medium text-white">{project.demoCredentials.password}</span>
-              </span>
+          {count > 1 && (
+            <div className="flex shrink-0 gap-2 sm:hidden">
+              <button type="button" onClick={() => go(-1)} aria-label="Предыдущий скриншот" className="grid size-11 place-items-center rounded-md bg-white/10">
+                <ChevronLeft aria-hidden size={20} />
+              </button>
+              <button type="button" onClick={() => go(1)} aria-label="Следующий скриншот" className="grid size-11 place-items-center rounded-md bg-white/10">
+                <ChevronRight aria-hidden size={20} />
+              </button>
             </div>
           )}
-          <div className="flex gap-5">
-            {project.liveUrl && (
-              <a
-                href={project.liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-sm font-medium text-white hover:text-white/70 transition-colors"
-              >
-                Открыть <ArrowRight aria-hidden="true" size={14} />
-              </a>
-            )}
-            {project.repoUrl && (
-              <a
-                href={project.repoUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-sm font-medium text-white/60 hover:text-white transition-colors"
-              >
-                Код <ArrowRight aria-hidden="true" size={14} />
-              </a>
-            )}
-          </div>
         </div>
       </div>
-    </motion.div>
+    </dialog>
   );
 }

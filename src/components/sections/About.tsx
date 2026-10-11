@@ -1,86 +1,51 @@
-"use client";
+import Image from "next/image";
+import { PERSON, education, languages } from "@/lib/content";
 
-import PhotoCarousel from "@/components/PhotoCarousel";
-import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+const facts = [
+  { label: "Город", value: PERSON.location },
+  { label: "Формат", value: "Удалёнка или гибрид" },
+  { label: "Образование", value: "ВолГУ, информационная безопасность" },
+  { label: "Языки", value: languages },
+];
 
 export default function About() {
   return (
-    <section id="about" className="py-24 md:py-32 border-t border-border">
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="grid md:grid-cols-12 gap-16 items-center">
-          {/* Stacked Cards Carousel */}
-          <div className="md:col-span-5">
-            <PhotoCarousel />
-          </div>
+    <section id="about" aria-labelledby="about-title" className="border-t border-border py-24 md:py-32">
+      <div className="mx-auto grid max-w-6xl gap-12 px-4 sm:px-6 md:grid-cols-[minmax(0,320px)_1fr] md:gap-16">
+        <div className="relative mx-auto aspect-4/5 w-full max-w-[320px] overflow-hidden rounded-lg border border-border-strong bg-surface-2">
+          <Image
+            src="/about/vladislav.webp"
+            alt="Владислав Акимов"
+            fill
+            sizes="(min-width: 768px) 320px, 80vw"
+            className="object-cover"
+          />
+        </div>
 
-          {/* Текстовая часть */}
-          <div className="md:col-span-7 space-y-8">
-            <div>
-              <h2 className="text-5xl md:text-6xl font-semibold tracking-[-0.04em] mb-6">
-                Обо мне
-              </h2>
-              <p className="text-xl text-muted-foreground leading-relaxed">
-                Я full-stack разработчик: строю продукты от интерфейса на
-                Next.js и TypeScript до бэкенда, базы данных и деплоя на
-                собственный сервер. Умею и вести продукт от идеи до
-                продакшена самостоятельно, и работать в команде — встраиваться
-                в чужие процессы, ревью и архитектурные решения. За плечами
-                коммерческий опыт и несколько полноценных pet-продуктов,
-                каждый из которых собран и задеплоен с нуля.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-2 gap-8 pt-4">
-              <div>
-                <div className="text-muted-foreground text-sm mb-1">
-                  Формат
-                </div>
-                <div className="text-2xl font-semibold">
-                  От идеи до прода — соло и в команде
-                </div>
-              </div>
-              <div>
-                <div className="text-muted-foreground text-sm mb-1">
-                  Подход
-                </div>
-                <div className="text-2xl font-semibold">
-                  Full-stack: UI, БД, инфраструктура
-                </div>
-              </div>
-              <div>
-                <div className="text-muted-foreground text-sm mb-1">
-                  Деплой
-                </div>
-                <div className="text-2xl font-semibold">
-                  VPS, nginx, Docker, CI/CD
-                </div>
-              </div>
-              <div>
-                <div className="text-muted-foreground text-sm mb-1">
-                  Основной стек
-                </div>
-                <div className="text-2xl font-semibold">Next.js + TS</div>
-              </div>
-            </div>
-
-            <p className="text-lg text-muted-foreground max-w-2xl">
-              Мне нравится не просто писать код, а создавать продукты,
-              которыми приятно пользоваться. Чистая архитектура, внимание к
-              деталям и плавные анимации — это то, что я привношу в каждый
-              проект.
+        <div className="max-w-2xl">
+          <h2 id="about-title" className="text-4xl font-semibold sm:text-5xl">
+            Обо мне
+          </h2>
+          <div className="mt-6 space-y-5 text-lg leading-relaxed">
+            <p>
+              Я full-stack разработчик из Волгограда, учусь в ВолГУ на направлении «{education.program}». С 2024 года делаю веб-продукты целиком — от схемы базы данных и API до
+              интерфейса, тестов и деплоя.
             </p>
-
-            <motion.a
-              href="#projects"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center gap-3 px-8 py-4 bg-primary text-primary-foreground rounded-2xl font-medium text-lg shadow-lg shadow-indigo-500/30 hover:shadow-indigo-500/40 transition-all"
-            >
-              Посмотреть мои проекты
-              <ArrowRight aria-hidden="true" />
-            </motion.a>
+            <p className="text-muted">
+              Первый коммерческий проект — интернет-магазин, который я полгода вёл один: от вёрстки нестандартного
+              дизайна до сервера и поддержки. Сейчас ищу команду, где смогу расти до уверенного middle: ревью кода,
+              продуктовые задачи и ответственность за фичу от начала до конца.
+            </p>
           </div>
+
+          <dl className="mt-10 grid gap-x-10 gap-y-5 border-t border-border pt-8 sm:grid-cols-2">
+            {facts.map((fact) => (
+              <div key={fact.label}>
+                <dt className="text-sm text-muted">{fact.label}</dt>
+                <dd className="mt-1 font-medium">{fact.value}</dd>
+              </div>
+            ))}
+          </dl>
         </div>
       </div>
     </section>

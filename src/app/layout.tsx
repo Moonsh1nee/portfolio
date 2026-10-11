@@ -1,35 +1,27 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono, Inter } from "next/font/google";
+import { Onest, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "next-themes";
+import Providers from "@/components/Providers";
 import Navbar from "@/components/navigation/Navbar";
-import { cn } from "@/lib/utils";
-import LenisProvider from "@/components/providers/LenisProvider";
 import { siteUrl } from "@/lib/site";
+import { PERSON } from "@/lib/content";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const onest = Onest({
+  variable: "--font-onest",
   subsets: ["latin", "cyrillic"],
-  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
-const inter = Inter({
-  variable: "--font-inter",
+const jetbrains = JetBrains_Mono({
+  variable: "--font-jetbrains",
   subsets: ["latin", "cyrillic"],
-  weight: ["400", "500", "600"],
+  weight: ["400", "500"],
   display: "swap",
+  preload: false,
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const title = "Владислав | Full-stack Developer";
-const description =
-  "Full-stack разработчик — Next.js, TypeScript, FastAPI. От идеи до продакшена, соло и в команде.";
+const title = `${PERSON.name} — ${PERSON.role}`;
+const description = `${PERSON.role}, ${PERSON.level}. Next.js и TypeScript, NestJS, PostgreSQL. ${PERSON.location}, ${PERSON.workFormat}.`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -39,21 +31,25 @@ export const metadata: Metadata = {
   openGraph: {
     title,
     description,
-    type: "website",
+    type: "profile",
     locale: "ru_RU",
-    siteName: title,
+    siteName: PERSON.name,
     url: siteUrl,
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: title }],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title,
     description,
+    images: ["/og.png"],
   },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0a0a0a",
-  colorScheme: "dark",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#fafbfc" },
+    { media: "(prefers-color-scheme: dark)", color: "#121417" },
+  ],
 };
 
 export default function RootLayout({
@@ -65,18 +61,19 @@ export default function RootLayout({
     <html
       lang="ru"
       suppressHydrationWarning
-      className={cn(geistSans.variable, inter.variable, geistMono.variable)}
+      className={`${onest.variable} ${jetbrains.variable}`}
     >
-      <body className="min-h-screen bg-background font-sans antialiased">
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem={false}
-        >
+      <body className="min-h-screen antialiased">
+        <Providers>
+          <a
+            href="#main"
+            className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-100 focus:rounded-md focus:bg-inverse focus:px-4 focus:py-2 focus:text-inverse-foreground"
+          >
+            Перейти к содержанию
+          </a>
           <Navbar />
-          <LenisProvider />
           {children}
-        </ThemeProvider>
+        </Providers>
       </body>
     </html>
   );

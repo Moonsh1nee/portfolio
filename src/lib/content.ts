@@ -1,223 +1,287 @@
-export interface SkillItem {
-  name: string;
-  level: string;
-  progress: number;
-}
+export const PERSON = {
+  name: "Владислав Акимов",
+  role: "Full-stack разработчик",
+  level: "Junior+ / Middle",
+  location: "Волгоград",
+  workFormat: "удалёнка или гибрид",
+} as const;
 
-export interface SkillCategory {
-  title: string;
-  icon: string;
-  accentClass: string;
-  iconWrapperClass: string;
-  gradientClass: string;
-  hoverBorderClass: string;
-  items: SkillItem[];
-}
+export const CONTACT_EMAIL = "moonsh1ne.vlad@yandex.ru";
+export const CONTACT_TELEGRAM_HANDLE = "Moonsh1ne_OP";
+export const CONTACT_TELEGRAM_URL = `https://t.me/${CONTACT_TELEGRAM_HANDLE}`;
+export const GITHUB_HANDLE = "Moonsh1nee";
+export const GITHUB_URL = `https://github.com/${GITHUB_HANDLE}`;
+export const VK_URL = "https://vk.ru/moonsh1ne_vk";
+export const RESUME_PDF_URL = "/Akimov_Vladislav_Resume.pdf";
+export const RESUME_DOCX_URL = "/Akimov_Vladislav_Resume.docx";
 
-export const skillCategories: SkillCategory[] = [
-  {
-    title: "Frontend",
-    icon: "⚛️",
-    accentClass: "text-blue-400",
-    iconWrapperClass: "bg-blue-500/10 text-blue-500",
-    gradientClass: "from-blue-500 to-indigo-500",
-    hoverBorderClass: "hover:border-blue-500/30",
-    items: [
-      { name: "Next.js", level: "Expert", progress: 95 },
-      { name: "TypeScript", level: "Expert", progress: 95 },
-      { name: "React", level: "Expert", progress: 90 },
-      { name: "Tailwind CSS", level: "Expert", progress: 90 },
-      { name: "Redux Toolkit", level: "Advanced", progress: 85 },
-      { name: "Zustand", level: "Advanced", progress: 80 },
-      { name: "React Hook Form", level: "Advanced", progress: 85 },
-    ],
-  },
-  {
-    title: "Backend",
-    icon: "🛠️",
-    accentClass: "text-emerald-400",
-    iconWrapperClass: "bg-emerald-500/10 text-emerald-500",
-    gradientClass: "from-emerald-500 to-teal-500",
-    hoverBorderClass: "hover:border-emerald-500/30",
-    items: [
-      { name: "FastAPI", level: "Basic", progress: 45 },
-      { name: "NestJS", level: "Intermediate", progress: 60 },
-      { name: "Node.js", level: "Advanced", progress: 85 },
-      { name: "Express", level: "Intermediate", progress: 75 },
-      { name: "Prisma ORM", level: "Advanced", progress: 90 },
-      { name: "SQLModel", level: "Intermediate", progress: 75 },
-      { name: "REST API", level: "Expert", progress: 90 },
-    ],
-  },
-  {
-    title: "Инфраструктура и БД",
-    icon: "🗄️",
-    accentClass: "text-amber-400",
-    iconWrapperClass: "bg-amber-500/10 text-amber-500",
-    gradientClass: "from-amber-500 to-orange-500",
-    hoverBorderClass: "hover:border-amber-500/30",
-    items: [
-      { name: "PostgreSQL", level: "Advanced", progress: 85 },
-      { name: "Docker", level: "Advanced", progress: 80 },
-      { name: "Nginx", level: "Advanced", progress: 80 },
-      { name: "Linux-серверы", level: "Advanced", progress: 80 },
-      { name: "systemd", level: "Advanced", progress: 80 },
-      { name: "Redis", level: "Intermediate", progress: 70 },
-      { name: "SQLite", level: "Advanced", progress: 85 },
-    ],
-  },
-  {
-    title: "Прочее",
-    icon: "✦",
-    accentClass: "text-violet-400",
-    iconWrapperClass: "bg-violet-500/10 text-violet-500",
-    gradientClass: "from-violet-500 to-purple-500",
-    hoverBorderClass: "hover:border-violet-500/30",
-    items: [
-      { name: "JWT / OAuth2", level: "Advanced", progress: 85 },
-      { name: "Security hardening", level: "Advanced", progress: 80 },
-      { name: "WebSocket", level: "Intermediate", progress: 70 },
-      { name: "Stripe-биллинг", level: "Intermediate", progress: 65 },
-      { name: "Git & GitHub", level: "Expert", progress: 95 },
-    ],
-  },
-];
+export type ProjectStatus = "done" | "offline" | "in-progress" | "client";
+
+export const STATUS_LABEL: Record<ProjectStatus, string> = {
+  done: "Готово",
+  offline: "Демо офлайн",
+  "in-progress": "В разработке",
+  client: "Коммерческий проект",
+};
+
+export interface Screenshot {
+  src: string;
+  alt: string;
+  note: string;
+}
 
 export interface Project {
+  slug: string;
   title: string;
-  description: string;
-  longDescription?: string;
-  emoji: string;
-  imageGradientClass: string;
-  screenshots?: string[];
-  badge: string;
-  badgeAccentClass: string;
-  tags: string[];
-  liveUrl?: string;
+  summary: string;
+  highlights: string[];
+  stack: string[];
+  status: ProjectStatus;
+  statusNote?: string;
+  period?: string;
+  screenshots: Screenshot[];
   repoUrl?: string;
-  demoCredentials?: { email: string; password: string };
+  featured: boolean;
 }
 
 export const projects: Project[] = [
   {
+    slug: "getgrip",
     title: "GetGrip",
-    description:
-      "Персональный «второй мозг»: задачи, привычки, цели, дневник, календарь и аналитика в одном приложении",
-    longDescription:
-      "Full-stack SaaS-продукт с веб-, мобильным (Expo/React Native) клиентами и async-бэкендом на FastAPI. Кастомизируемый дашборд из виджетов, push-уведомления, геймификация (XP/ачивменты), синхронизация с Google Calendar, Stripe-биллинг с free/pro планами, собственный OAuth2-сервер авторизации — через него в GetGrip заходят Wisely и Fuel. Был задеплоен на своём VPS (nginx, systemd, security hardening) — сейчас сервер выключен, демо временно недоступно.",
-    emoji: "🧠",
-    imageGradientClass: "from-violet-800 to-indigo-950",
-    screenshots: [
-      "/projects/getgrip-1.png",
-      "/projects/getgrip-2.png",
-      "/projects/getgrip-3.png",
-      "/projects/getgrip-4.png",
-      "/projects/getgrip-5.png",
+    summary:
+      "Персональный «второй мозг»: задачи, привычки, цели, дневник и календарь — веб, мобильное приложение и API.",
+    highlights: [
+      "Три клиента на одном бэкенде: веб на Next.js, мобильное приложение на Expo/React Native и async API на FastAPI с PostgreSQL и Redis.",
+      "Собственный OAuth2-сервер (Authorization Code + PKCE): через него в Wisely и Fuel входят аккаунтом GetGrip.",
+      "Настраиваемый дашборд из 13 виджетов, push-уведомления, геймификация, синхронизация с Google Calendar, биллинг Stripe с планами free/pro.",
     ],
-    badge: "Демо офлайн",
-    badgeAccentClass: "bg-zinc-500/10 text-zinc-400",
-    tags: [
-      "Next.js 16",
-      "React Native",
-      "FastAPI",
-      "PostgreSQL",
-      "Redis",
-      "Stripe",
+    stack: ["Next.js 16", "React Native", "FastAPI", "PostgreSQL", "Redis", "Stripe"],
+    status: "offline",
+    statusNote:
+      "Работал в проде на собственном VPS; сервер выключен, поэтому демо сейчас недоступно.",
+    screenshots: [
+      {
+        src: "/projects/getgrip-1.webp",
+        alt: "GetGrip: дашборд с прогрессом дня и задачами",
+        note: "Дашборд собирается из 13 виджетов: каждый включается, меняет ширину и порядок; раскладка хранится на бэкенде и синхронизируется между устройствами.",
+      },
+      {
+        src: "/projects/getgrip-2.webp",
+        alt: "GetGrip: список задач с фильтрами",
+        note: "Задачи с подзадачами, проектами, тегами и повторениями; фильтры, drag-and-drop сортировка, обновления по WebSocket.",
+      },
+      {
+        src: "/projects/getgrip-3.webp",
+        alt: "GetGrip: трекер привычек",
+        note: "Привычки со стриками и «заморозкой» пропущенного дня; корреляция привычек с настроением из дневника считается на бэкенде.",
+      },
+      {
+        src: "/projects/getgrip-4.webp",
+        alt: "GetGrip: цели с прогрессом",
+        note: "Цели с историей прогресса: при достижении целевого значения статус меняется автоматически.",
+      },
+      {
+        src: "/projects/getgrip-5.webp",
+        alt: "GetGrip: календарь на неделю",
+        note: "Календарь собирает задачи, привычки и записи дневника; перетаскивание события меняет его дату.",
+      },
     ],
     repoUrl: "https://github.com/Moonsh1nee/habitforge-frontend",
+    featured: true,
   },
   {
-    title: "Fuel",
-    description: "Трекер питания и тренировок с распознаванием штрихкодов",
-    longDescription:
-      "Логирование еды с автоматическим пересчётом БЖУ по граммам, сканер штрихкодов (@zxing/browser) и поиск продуктов через Open Food Facts, конструктор собственных составных блюд, автоопределение личных рекордов в тренировках. Алгоритмическая генерация меню на месяц с защитой от повторов и автосборкой списка покупок.",
-    emoji: "🥗",
-    imageGradientClass: "from-emerald-800 to-teal-950",
-    screenshots: [
-      "/projects/fuel-1.png",
-      "/projects/fuel-2.png",
-      "/projects/fuel-3.png",
-      "/projects/fuel-4.png",
-      "/projects/fuel-5.png",
-    ],
-    badge: "Готово",
-    badgeAccentClass: "bg-emerald-500/10 text-emerald-400",
-    tags: ["Next.js 16", "Prisma 7", "SQLite", "TypeScript"],
-    repoUrl: "https://github.com/Moonsh1nee/Fuel",
-  },
-  {
-    title: "Wisely",
-    description: "Персональный трекер финансов с мультивалютными бюджетами",
-    longDescription:
-      "Бюджеты и графики расходов по категориям, повторяющиеся транзакции, отдельная модель переводов между счетами (double-entry), накопительные цели с прогресс-барами. Вход через собственный аккаунт GetGrip (OAuth2).",
-    emoji: "💰",
-    imageGradientClass: "from-amber-800 to-orange-950",
-    screenshots: [
-      "/projects/wisely-1.png",
-      "/projects/wisely-2.png",
-      "/projects/wisely-3.png",
-      "/projects/wisely-4.png",
-      "/projects/wisely-5.png",
-    ],
-    badge: "Готово",
-    badgeAccentClass: "bg-emerald-500/10 text-emerald-400",
-    tags: ["Next.js 16", "Prisma 7", "SQLite", "TypeScript"],
-    repoUrl: "https://github.com/Moonsh1nee/Wisely",
-  },
-  {
-    title: "Sift",
-    description: "AI-скринер вакансий для hh.ru",
-    longDescription:
-      "Подтягивает вакансии с hh.ru, оценивает соответствие резюме через Claude API (fit-score, совпадающие/недостающие навыки), генерирует сопроводительные письма. CRM-пайплайн статусов отклика с напоминаниями о фоллоу-апе. hh.ru закрыл публичный API — интеграция работает через HTML-парсинг (cheerio) той же разметки, что видит браузер.",
-    emoji: "🎯",
-    imageGradientClass: "from-blue-800 to-cyan-950",
-    screenshots: [
-      "/projects/sift-1.png",
-      "/projects/sift-2.png",
-      "/projects/sift-3.png",
-      "/projects/sift-4.png",
-    ],
-    badge: "Готово",
-    badgeAccentClass: "bg-emerald-500/10 text-emerald-400",
-    tags: ["Next.js 16", "Claude API", "Prisma 7", "Cheerio"],
-    repoUrl: "https://github.com/Moonsh1nee/Sift",
-  },
-  {
-    title: "Cadence",
-    description: "Трекер подписок с визуальной шкалой платежей",
-    longDescription:
-      "Таймлайн подписок с масштабированием по датам и разведением пересекающихся платежей по дорожкам, расчёт биллинг-циклов, полный жизненный цикл подписки (активна → пауза → отмена → возврат).",
-    emoji: "📅",
-    imageGradientClass: "from-fuchsia-800 to-purple-950",
-    screenshots: [
-      "/projects/cadence-1.png",
-      "/projects/cadence-2.png",
-      "/projects/cadence-3.png",
-      "/projects/cadence-4.png",
-      "/projects/cadence-5.png",
-    ],
-    badge: "В разработке",
-    badgeAccentClass: "bg-violet-500/10 text-violet-400",
-    tags: ["Next.js 16", "Prisma 7", "Base UI", "TypeScript"],
-    repoUrl: "https://github.com/Moonsh1nee/Cadence",
-  },
-  {
+    slug: "muiraje",
     title: "Muiraje",
-    description: "Интернет-магазин на заказ с необычным ретро-дизайном",
-    longDescription:
-      "Коммерческая разработка для реального заказчика — не личный проект. Дизайн-концепция полностью клиентская: витрина стилизована под рабочий стол Windows начала 2000-х — папки-категории, окна с заголовками и кнопками свернуть/закрыть, «браузер» с адресной строкой для страниц коллекций, даже пасхалка в духе BSOD на 404. Моя часть — верстка этого нестандартного интерфейса и весь full-stack: Next.js + Redux Toolkit на фронте, NestJS + Prisma + PostgreSQL с JWT-авторизацией, email-уведомлениями и приёмом заказов через Telegram-бота на бэке, админка для управления каталогом. Сайт временно не работает — у заказчика сейчас пауза в бизнесе.",
-    emoji: "🖥️",
-    imageGradientClass: "from-slate-700 to-blue-950",
-    screenshots: [
-      "/projects/muiraje-1.png",
-      "/projects/muiraje-2.png",
-      "/projects/muiraje-3.png",
-      "/projects/muiraje-4.png",
-      "/projects/muiraje-5.png",
+    summary:
+      "Интернет-магазин для реального заказчика: нестандартная витрина в стиле рабочего стола Windows начала 2000-х.",
+    highlights: [
+      "Сверстал нетиповой интерфейс по концепции клиента: каталог в виде проводника, окна с заголовками, «браузер» для коллекций, страница 404 в духе BSOD.",
+      "Бэкенд на NestJS, Prisma и PostgreSQL: каталог с вариантами товаров, промокоды, email-уведомления по статусам заказа.",
+      "Заказы уходят оператору через Telegram-бота вместо платёжного шлюза; админка каталога закрыта JWT.",
     ],
-    badge: "Клиентский проект",
-    badgeAccentClass: "bg-zinc-500/10 text-zinc-400",
-    tags: ["Next.js", "NestJS", "Prisma", "PostgreSQL", "JWT", "SCSS"],
+    stack: ["Next.js", "Redux Toolkit", "NestJS", "Prisma", "PostgreSQL", "SCSS"],
+    status: "client",
+    statusNote:
+      "Код приватный — коммерческая разработка. Сайт не работает: у заказчика пауза в бизнесе.",
+    period: "сен 2024 — мар 2025",
+    screenshots: [
+      {
+        src: "/projects/muiraje-3.webp",
+        alt: "Muiraje: карточка товара в стиле окна Windows",
+        note: "Карточка товара в окне ОС: варианты размера и цвета, у каждого варианта своя картинка.",
+      },
+      {
+        src: "/projects/muiraje-1.webp",
+        alt: "Muiraje: главная страница — рабочий стол",
+        note: "Главная — рабочий стол с иконками коллекций; вся вёрстка на SCSS-модулях.",
+      },
+      {
+        src: "/projects/muiraje-2.webp",
+        alt: "Muiraje: каталог в виде проводника с папками категорий",
+        note: "Каталог как проводник: категории — папки, товары — файлы.",
+      },
+      {
+        src: "/projects/muiraje-4.webp",
+        alt: "Muiraje: коллекция Night in the Desert в окне ретро-браузера",
+        note: "Отдельная коллекция Night in the Desert со своей структурой каталога — в окне ретро-браузера.",
+      },
+    ],
+    featured: true,
+  },
+  {
+    slug: "sift",
+    title: "Sift",
+    summary:
+      "AI-скринер вакансий hh.ru: оценивает соответствие резюме, пишет сопроводительные письма, ведёт трекер откликов.",
+    highlights: [
+      "Claude API со structured output по Zod-схеме: оценка соответствия, совпадающие и недостающие навыки — одним вызовом.",
+      "hh.ru закрыл публичный API в 2026 году — переписал интеграцию на парсинг HTML (cheerio) по стабильным data-qa атрибутам.",
+      "Пайплайн откликов со статусами, заметками и напоминаниями о фоллоу-апе; 41 тест на чистых функциях.",
+    ],
+    stack: ["Next.js 16", "TypeScript", "Claude API", "Prisma 7", "Cheerio"],
+    status: "done",
+    screenshots: [
+      {
+        src: "/projects/sift-2.webp",
+        alt: "Sift: вакансия с оценкой соответствия и недостающими навыками",
+        note: "Один вызов Claude API со structured output возвращает оценку, совпадающие и недостающие навыки и пояснение; рядом — статус отклика и сопроводительное письмо.",
+      },
+      {
+        src: "/projects/sift-1.webp",
+        alt: "Sift: список вакансий со статусами",
+        note: "Вакансии подтягиваются парсингом HTML hh.ru; у каждой — статус отклика и оценка соответствия.",
+      },
+      {
+        src: "/projects/sift-3.webp",
+        alt: "Sift: профиль с резюме и фильтрами поиска",
+        note: "Профиль: резюме и фильтры поиска, включая профобласти из открытого справочника hh.ru.",
+      },
+      {
+        src: "/projects/sift-4.webp",
+        alt: "Sift: вакансии после обновления",
+        note: "Пакетная оценка новых вакансий; оценка помечается устаревшей, если резюме изменилось после скоринга.",
+      },
+    ],
+    repoUrl: "https://github.com/Moonsh1nee/Sift",
+    featured: true,
+  },
+  {
+    slug: "fuel",
+    title: "Fuel",
+    summary:
+      "Трекер питания и тренировок: сканер штрихкодов, генерация меню на месяц и список покупок.",
+    highlights: [
+      "Генератор меню — чистая функция на собственном seeded RNG (mulberry32): результат воспроизводим, тест проверяет отсутствие повторов в любом 7-дневном окне.",
+      "Сканер штрихкодов через камеру (@zxing/browser) и поиск в Open Food Facts; БЖУ пересчитывается по граммам съеденного.",
+      "Автоопределение личных рекордов в тренировках, графики калорий и объёма; 64 теста.",
+    ],
+    stack: ["Next.js 16", "TypeScript", "Prisma 7", "SQLite", "Recharts"],
+    status: "done",
+    screenshots: [
+      {
+        src: "/projects/fuel-1.webp",
+        alt: "Fuel: сгенерированное меню на месяц",
+        note: "Меню на месяц из своих рецептов: детерминированный генератор без повторов в 7-дневном окне, порции подстраиваются под цель по калориям.",
+      },
+      {
+        src: "/projects/fuel-3.webp",
+        alt: "Fuel: дашборд с калориями за 14 дней",
+        note: "Калории за 14 дней и прогресс к целям плана питания.",
+      },
+      {
+        src: "/projects/fuel-4.webp",
+        alt: "Fuel: дневник питания",
+        note: "Дневник питания: БЖУ пересчитывается по граммам съеденного; продукт ищется по названию или штрихкоду.",
+      },
+      {
+        src: "/projects/fuel-2.webp",
+        alt: "Fuel: журнал тренировок",
+        note: "Журнал тренировок: подходы, повторы и вес; личные рекорды определяются автоматически.",
+      },
+      {
+        src: "/projects/fuel-5.webp",
+        alt: "Fuel: редактор рецепта",
+        note: "Редактор рецепта: ингредиенты с граммовкой, БЖУ на порцию фиксируется при сохранении.",
+      },
+    ],
+    repoUrl: "https://github.com/Moonsh1nee/Fuel",
+    featured: true,
+  },
+  {
+    slug: "wisely",
+    title: "Wisely",
+    summary:
+      "Финансовый трекер: мультивалютные счета, бюджеты, повторяющиеся транзакции, переводы по double-entry и импорт CSV-выписок.",
+    highlights: [],
+    stack: ["Next.js 16", "Prisma 7", "SQLite", "Auth.js"],
+    status: "done",
+    screenshots: [
+      {
+        src: "/projects/wisely-1.webp",
+        alt: "Wisely: дашборд с расходами по категориям",
+        note: "Расходы по категориям и динамика баланса по месяцам; хвост мелких категорий сворачивается в «Остальное».",
+      },
+      {
+        src: "/projects/wisely-2.webp",
+        alt: "Wisely: счета и накопительные цели",
+        note: "Счета в разных валютах и накопительные цели с прогрессом.",
+      },
+      {
+        src: "/projects/wisely-4.webp",
+        alt: "Wisely: лента транзакций",
+        note: "Лента транзакций по датам; повторяющиеся платежи генерируются при открытии страницы, без крон-задач.",
+      },
+      {
+        src: "/projects/wisely-3.webp",
+        alt: "Wisely: бюджеты",
+        note: "Бюджеты по категориям на период.",
+      },
+      {
+        src: "/projects/wisely-5.webp",
+        alt: "Wisely: настройки и категории",
+        note: "Настройки: валюта по умолчанию и категории.",
+      },
+    ],
+    repoUrl: "https://github.com/Moonsh1nee/Wisely",
+    featured: false,
+  },
+  {
+    slug: "cadence",
+    title: "Cadence",
+    summary:
+      "Трекер подписок с таймлайном платежей и биллинг-циклами без дрейфа даты: 31 января → 28 февраля → 31 марта.",
+    highlights: [],
+    stack: ["Next.js 16", "Prisma 7", "Base UI", "TypeScript"],
+    status: "in-progress",
+    screenshots: [
+      {
+        src: "/projects/cadence-3.webp",
+        alt: "Cadence: таймлайн подписок за год",
+        note: "Таймлайн за год: пересекающиеся платежи раскладываются по дорожкам, а не накладываются.",
+      },
+      {
+        src: "/projects/cadence-1.webp",
+        alt: "Cadence: таймлайн за месяц и сумма в месяц",
+        note: "Месячный вид и итог в месяц по активным подпискам.",
+      },
+      {
+        src: "/projects/cadence-2.webp",
+        alt: "Cadence: форма новой подписки",
+        note: "Новая подписка: периодичность, категория, цвет, ссылка на отмену.",
+      },
+      {
+        src: "/projects/cadence-4.webp",
+        alt: "Cadence: отменённые подписки",
+        note: "Отменённые подписки свёрнуты в отдельный список.",
+      },
+      {
+        src: "/projects/cadence-5.webp",
+        alt: "Cadence: редактирование подписки",
+        note: "Редактирование: пауза, отмена и возобновление.",
+      },
+    ],
+    repoUrl: "https://github.com/Moonsh1nee/Cadence",
+    featured: false,
   },
 ];
 
@@ -225,38 +289,66 @@ export interface ExperienceEntry {
   period: string;
   role: string;
   place: string;
-  employmentType?: string;
   description: string;
-  tags: string[];
+  stack: string[];
 }
 
 export const experience: ExperienceEntry[] = [
   {
+    period: "апр 2025 — сейчас",
+    role: "Full-stack разработчик",
+    place: "Собственные продукты",
+    description:
+      "Спроектировал и разработал GetGrip, Sift, Fuel, Wisely и Cadence — от архитектуры и схемы БД до интерфейса, тестов и деплоя. Выделил финансы и питание из GetGrip в отдельные продукты с миграцией данных и связал их общим входом через OAuth2.",
+    stack: ["Next.js", "TypeScript", "FastAPI", "React Native", "PostgreSQL"],
+  },
+  {
     period: "сен 2024 — мар 2025",
     role: "Full-stack разработчик",
-    place: "Фриланс-проект, соло (Muiraje)",
-    employmentType: "Фриланс",
+    place: "Muiraje · проектная работа, соло",
     description:
-      "Разработал и запустил под ключ интернет-магазин на заказ: Next.js + Redux Toolkit на фронте, NestJS + Prisma + PostgreSQL с JWT-авторизацией на бэке. Дизайн — полностью клиентская концепция, нестандартная: витрина стилизована под рабочий стол Windows начала 2000-х, пришлось верстать нетиповой, детально проработанный интерфейс, а не типовой e-commerce шаблон. Оформление заказа без встроенной оплаты — заявка уходит Telegram-ботом оператору, который дальше ведёт клиента лично. Полный цикл на VPS: nginx, SSL, CI-подобный процесс деплоя. Единственный разработчик на проекте — от вёрстки и бэкенда до деплоя и последующей поддержки. Около полугода активной разработки.",
-    tags: ["Next.js", "NestJS", "Prisma", "PostgreSQL", "SCSS"],
+      "Разработал и запустил интернет-магазин для заказчика: нестандартная витрина на Next.js и Redux Toolkit, API на NestJS, Prisma и PostgreSQL, заказы через Telegram-бота, развёртывание на VPS с nginx и SSL. Единственный разработчик на проекте — от вёрстки до поддержки.",
+    stack: ["Next.js", "NestJS", "Prisma", "PostgreSQL", "SCSS"],
   },
 ];
 
-export const CONTACT_EMAIL = "moonsh1ne.vlad@yandex.ru";
-export const CONTACT_TELEGRAM_HANDLE = "Moonsh1ne_OP";
-export const CONTACT_TELEGRAM_URL = `https://t.me/${CONTACT_TELEGRAM_HANDLE}`;
-export const GITHUB_URL = "https://github.com/Moonsh1nee";
+export const education = {
+  place: "Волгоградский государственный университет",
+  program: "Информационная безопасность автоматизированных систем",
+  period: "2023 — 2027",
+  note: "Практика в секторе защиты информации Волгоградского отделения Банка России.",
+};
 
-export interface SocialLink {
-  label: string;
-  href: string;
+export const languages = "Английский — B2";
+
+export interface SkillGroup {
+  title: string;
+  items: string[];
 }
 
-export const VK_URL = "https://vk.ru/moonsh1ne_vk";
-export const RESUME_URL = "/Akimov_Vladislav_Resume.docx";
+export const skillGroups: SkillGroup[] = [
+  {
+    title: "Основной стек",
+    items: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Node.js", "Prisma", "PostgreSQL"],
+  },
+  {
+    title: "Frontend",
+    items: ["Redux Toolkit", "Zustand", "React Hook Form", "Framer Motion", "React Native (Expo)"],
+  },
+  {
+    title: "Backend",
+    items: ["NestJS", "Express", "REST", "WebSocket", "JWT / OAuth2", "FastAPI — базово", "SQLModel"],
+  },
+  {
+    title: "Инфраструктура",
+    items: ["Docker", "Nginx", "Linux", "systemd", "Redis", "SQLite", "GitHub Actions", "ufw, fail2ban, TLS"],
+  },
+];
 
-export const socialLinks: SocialLink[] = [
-  { label: "GitHub", href: GITHUB_URL },
-  { label: "Telegram", href: CONTACT_TELEGRAM_URL },
-  { label: "VK", href: VK_URL },
+export const navLinks = [
+  { label: "Проекты", href: "#projects" },
+  { label: "Опыт", href: "#experience" },
+  { label: "Навыки", href: "#skills" },
+  { label: "Обо мне", href: "#about" },
+  { label: "Контакты", href: "#contact" },
 ];

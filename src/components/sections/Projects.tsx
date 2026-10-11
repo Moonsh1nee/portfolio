@@ -2,156 +2,91 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, Images, KeyRound } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { projects, GITHUB_URL, type Project } from "@/lib/content";
+import CaseStudy from "@/components/sections/CaseStudy";
 import ProjectLightbox from "@/components/sections/ProjectLightbox";
+import ProjectStatusMark from "@/components/sections/ProjectStatus";
 
-const PREVIEW_COUNT = 2;
+const featured = projects.filter((p) => p.featured);
+const others = projects.filter((p) => !p.featured);
 
 export default function Projects() {
-  const [active, setActive] = useState<{ project: Project; index: number } | null>(null);
+  const [gallery, setGallery] = useState<{ project: Project; index: number } | null>(null);
 
   return (
-    <section id="projects" className="py-24 md:py-32 border-t border-border">
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="flex justify-between items-end mb-12">
+    <section id="projects" aria-labelledby="projects-title" className="pt-16 pb-24 md:pt-20 md:pb-32">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+        <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
-            <h2 className="text-5xl md:text-6xl font-semibold tracking-[-0.04em]">
-              Избранные проекты
+            <h2 id="projects-title" className="text-4xl font-semibold sm:text-5xl">
+              Проекты
             </h2>
-            <p className="text-muted-foreground text-xl mt-2">
-              То, чем я горжусь больше всего
-            </p>
+            <p className="mt-3 max-w-xl text-lg text-muted">Четыре основные работы: что сделано и где было сложно.</p>
           </div>
           <a
             href={GITHUB_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden md:flex items-center gap-2 text-primary hover:text-primary/80 transition-colors"
+            className="inline-flex items-center gap-1 text-sm font-medium text-link underline decoration-transparent transition-colors duration-150 hover:decoration-current"
           >
-            Все проекты <ArrowRight aria-hidden="true" size={18} />
+            Все репозитории на GitHub
+            <ArrowUpRight aria-hidden size={15} />
           </a>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8">
-          {projects.map((project) => (
-            <motion.div
-              key={project.title}
-              whileHover={{ y: -12 }}
-              className="group bg-card border border-border rounded-3xl overflow-hidden"
-            >
-              {project.screenshots && project.screenshots.length > 0 ? (
-                <div className="grid grid-cols-2 gap-0.5 h-64 bg-border">
-                  {project.screenshots.slice(0, PREVIEW_COUNT).map((src, i) => {
-                    const remaining = project.screenshots!.length - PREVIEW_COUNT;
-                    const isLastPreview = i === PREVIEW_COUNT - 1 && remaining > 0;
-                    return (
-                      <button
-                        key={src}
-                        type="button"
-                        onClick={() => setActive({ project, index: i })}
-                        aria-label={`Открыть галерею ${project.title}, фото ${i + 1}`}
-                        className="relative overflow-hidden cursor-zoom-in"
-                      >
-                        <Image
-                          src={src}
-                          alt={`Скриншот ${project.title}`}
-                          fill
-                          sizes="(min-width: 768px) 25vw, 50vw"
-                          className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                        />
-                        {isLastPreview && (
-                          <div className="absolute inset-0 bg-black/60 flex items-center justify-center gap-1.5 text-white text-sm font-medium">
-                            <Images aria-hidden="true" size={16} />+{remaining}
-                          </div>
-                        )}
-                      </button>
-                    );
-                  })}
-                </div>
-              ) : (
-                <div
-                  className={`h-64 bg-linear-to-br ${project.imageGradientClass} flex items-center justify-center text-7xl`}
-                >
-                  <span aria-hidden="true">{project.emoji}</span>
-                </div>
-              )}
-              <div className="p-8">
-                <div className="flex justify-between items-start mb-4">
-                  <div>
-                    <h3 className="text-2xl font-semibold">{project.title}</h3>
-                    <p className="text-muted-foreground">
-                      {project.description}
-                    </p>
-                  </div>
-                  <span
-                    className={`text-xs font-medium px-3 py-1 rounded-full whitespace-nowrap ${project.badgeAccentClass}`}
-                  >
-                    {project.badge}
-                  </span>
-                </div>
-                {project.longDescription && (
-                  <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
-                    {project.longDescription}
-                  </p>
-                )}
-                <div className="flex flex-wrap gap-2 text-xs text-muted-foreground mb-4">
-                  {project.tags.map((tag) => (
-                    <div key={tag} className="bg-muted px-3 py-1 rounded-full">
-                      {tag}
-                    </div>
-                  ))}
-                </div>
-                {project.demoCredentials && (
-                  <div className="flex items-center gap-2 text-xs text-muted-foreground bg-muted px-3 py-2 rounded-2xl mb-4">
-                    <KeyRound aria-hidden="true" size={14} className="shrink-0" />
-                    <span>
-                      Демо-доступ: <span className="font-medium text-foreground">{project.demoCredentials.email}</span>
-                      {" / "}
-                      <span className="font-medium text-foreground">{project.demoCredentials.password}</span>
-                    </span>
-                  </div>
-                )}
-                {(project.liveUrl || project.repoUrl) && (
-                  <div className="flex gap-4 pt-2">
-                    {project.liveUrl && (
-                      <a
-                        href={project.liveUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:text-primary/80 transition-colors"
-                      >
-                        Открыть <ArrowRight aria-hidden="true" size={14} />
-                      </a>
-                    )}
-                    {project.repoUrl && (
-                      <a
-                        href={project.repoUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-                      >
-                        Код <ArrowRight aria-hidden="true" size={14} />
-                      </a>
-                    )}
-                  </div>
-                )}
-              </div>
-            </motion.div>
+        <div className="mt-12 space-y-16 lg:space-y-20">
+          {featured.map((project) => (
+            <CaseStudy key={project.slug} project={project} onOpenGallery={(index) => setGallery({ project, index })} />
           ))}
         </div>
+
+        <h3 className="mt-24 text-2xl font-semibold">Ещё проекты</h3>
+        <ul className="mt-6 divide-y divide-border border-y border-border">
+          {others.map((project) => (
+            <li key={project.slug} className="grid gap-5 py-6 sm:grid-cols-[200px_1fr] sm:gap-8">
+              <button
+                type="button"
+                onClick={() => setGallery({ project, index: 0 })}
+                aria-label={`Открыть скриншоты ${project.title}`}
+                className="relative aspect-16/10 overflow-hidden rounded-md border border-border-strong bg-surface-2"
+              >
+                <Image src={project.screenshots[0].src} alt={project.screenshots[0].alt} fill sizes="(min-width: 640px) 200px, 100vw" className="object-cover object-top" />
+              </button>
+              <div className="min-w-0">
+                <div className="flex flex-wrap items-center gap-3">
+                  <h4 className="text-xl font-semibold">{project.title}</h4>
+                  <ProjectStatusMark status={project.status} />
+                </div>
+                <p className="mt-2 leading-relaxed text-muted">{project.summary}</p>
+                <div className="mt-3 flex flex-wrap items-center gap-x-6 gap-y-1">
+                  <p className="font-mono text-xs text-muted">{project.stack.join(" · ")}</p>
+                  {project.repoUrl && (
+                    <a
+                      href={project.repoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-sm font-medium text-link underline decoration-transparent transition-colors duration-150 hover:decoration-current"
+                    >
+                      Код
+                      <ArrowUpRight aria-hidden size={14} />
+                    </a>
+                  )}
+                </div>
+              </div>
+            </li>
+          ))}
+        </ul>
       </div>
 
-      <AnimatePresence>
-        {active && (
-          <ProjectLightbox
-            project={active.project}
-            initialIndex={active.index}
-            onClose={() => setActive(null)}
-          />
-        )}
-      </AnimatePresence>
+      {gallery && (
+        <ProjectLightbox
+          key={gallery.project.slug}
+          project={gallery.project}
+          initialIndex={gallery.index}
+          onClose={() => setGallery(null)}
+        />
+      )}
     </section>
   );
 }
