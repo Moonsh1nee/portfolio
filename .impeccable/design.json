@@ -1,0 +1,174 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-11T00:00:00Z",
+  "title": "Design System: Владислав Акимов — Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "background": { "role": "neutral", "displayName": "Cool Paper", "canonical": "oklch(0.985 0.002 250)", "darkCounterpart": "background-dark", "tonalRamp": ["oklch(0.15 0.002 250)", "oklch(0.26 0.002 250)", "oklch(0.38 0.002 250)", "oklch(0.5 0.002 250)", "oklch(0.62 0.002 250)", "oklch(0.74 0.002 250)", "oklch(0.86 0.002 250)", "oklch(0.95 0.002 250)"] },
+      "surface": { "role": "neutral", "displayName": "Raised White", "canonical": "oklch(1 0 0)", "darkCounterpart": "surface-dark", "tonalRamp": ["oklch(0.15 0 0)", "oklch(0.26 0 0)", "oklch(0.38 0 0)", "oklch(0.5 0 0)", "oklch(0.62 0 0)", "oklch(0.74 0 0)", "oklch(0.86 0 0)", "oklch(0.95 0 0)"] },
+      "surface-2": { "role": "neutral", "displayName": "Recessed Grey", "canonical": "oklch(0.965 0.003 250)", "darkCounterpart": "surface-2-dark", "tonalRamp": ["oklch(0.15 0.003 250)", "oklch(0.26 0.003 250)", "oklch(0.38 0.003 250)", "oklch(0.5 0.003 250)", "oklch(0.62 0.003 250)", "oklch(0.74 0.003 250)", "oklch(0.86 0.003 250)", "oklch(0.95 0.003 250)"] },
+      "foreground": { "role": "neutral", "displayName": "Ink", "canonical": "oklch(0.21 0.012 260)", "darkCounterpart": "foreground-dark", "tonalRamp": ["oklch(0.15 0.012 260)", "oklch(0.26 0.012 260)", "oklch(0.38 0.012 260)", "oklch(0.5 0.012 260)", "oklch(0.62 0.012 260)", "oklch(0.74 0.012 260)", "oklch(0.86 0.012 260)", "oklch(0.95 0.012 260)"] },
+      "muted": { "role": "neutral", "displayName": "Pencil Grey", "canonical": "oklch(0.47 0.012 260)", "darkCounterpart": "muted-dark", "tonalRamp": ["oklch(0.15 0.012 260)", "oklch(0.26 0.012 260)", "oklch(0.38 0.012 260)", "oklch(0.5 0.012 260)", "oklch(0.62 0.012 260)", "oklch(0.74 0.012 260)", "oklch(0.86 0.012 260)", "oklch(0.95 0.012 260)"] },
+      "border": { "role": "neutral", "displayName": "Hairline", "canonical": "oklch(0.91 0.004 255)", "darkCounterpart": "border-dark", "tonalRamp": ["oklch(0.15 0.004 255)", "oklch(0.26 0.004 255)", "oklch(0.38 0.004 255)", "oklch(0.5 0.004 255)", "oklch(0.62 0.004 255)", "oklch(0.74 0.004 255)", "oklch(0.86 0.004 255)", "oklch(0.95 0.004 255)"] },
+      "border-strong": { "role": "neutral", "displayName": "Firm Hairline", "canonical": "oklch(0.84 0.006 255)", "darkCounterpart": "border-strong-dark", "tonalRamp": ["oklch(0.15 0.006 255)", "oklch(0.26 0.006 255)", "oklch(0.38 0.006 255)", "oklch(0.5 0.006 255)", "oklch(0.62 0.006 255)", "oklch(0.74 0.006 255)", "oklch(0.86 0.006 255)", "oklch(0.95 0.006 255)"] },
+      "accent": { "role": "primary", "displayName": "Signal Amber", "canonical": "oklch(0.7 0.16 58)", "darkCounterpart": "accent-dark", "tonalRamp": ["oklch(0.15 0.05 58)", "oklch(0.26 0.08 58)", "oklch(0.38 0.11 58)", "oklch(0.5 0.14 58)", "oklch(0.62 0.16 58)", "oklch(0.74 0.15 58)", "oklch(0.86 0.09 58)", "oklch(0.95 0.035 58)"] },
+      "link": { "role": "secondary", "displayName": "Burnt Amber Link", "canonical": "oklch(0.5 0.13 52)", "darkCounterpart": "link-dark", "tonalRamp": ["oklch(0.15 0.04 52)", "oklch(0.26 0.07 52)", "oklch(0.38 0.1 52)", "oklch(0.5 0.13 52)", "oklch(0.62 0.13 52)", "oklch(0.74 0.11 52)", "oklch(0.86 0.07 52)", "oklch(0.95 0.03 52)"] },
+      "inverse": { "role": "neutral", "displayName": "Inverse Ink", "canonical": "oklch(0.21 0.012 260)", "darkCounterpart": "inverse-dark" },
+      "inverse-foreground": { "role": "neutral", "displayName": "Inverse Paper", "canonical": "oklch(0.985 0.002 250)", "darkCounterpart": "inverse-foreground-dark" },
+      "background-dark": { "role": "neutral", "displayName": "Night Slate", "canonical": "oklch(0.155 0.006 260)", "theme": "dark" },
+      "surface-dark": { "role": "neutral", "displayName": "Raised Slate", "canonical": "oklch(0.19 0.007 260)", "theme": "dark" },
+      "surface-2-dark": { "role": "neutral", "displayName": "Recessed Slate", "canonical": "oklch(0.225 0.008 260)", "theme": "dark" },
+      "foreground-dark": { "role": "neutral", "displayName": "Night Ink", "canonical": "oklch(0.955 0.003 250)", "theme": "dark" },
+      "muted-dark": { "role": "neutral", "displayName": "Night Pencil", "canonical": "oklch(0.72 0.009 255)", "theme": "dark" },
+      "border-dark": { "role": "neutral", "displayName": "Night Hairline", "canonical": "oklch(1 0 0 / 9%)", "theme": "dark" },
+      "border-strong-dark": { "role": "neutral", "displayName": "Night Firm Hairline", "canonical": "oklch(1 0 0 / 16%)", "theme": "dark" },
+      "accent-dark": { "role": "primary", "displayName": "Signal Amber (dark)", "canonical": "oklch(0.79 0.14 66)", "theme": "dark" },
+      "link-dark": { "role": "secondary", "displayName": "Burnt Amber Link (dark)", "canonical": "oklch(0.82 0.12 68)", "theme": "dark" },
+      "inverse-dark": { "role": "neutral", "displayName": "Inverse Ink (dark)", "canonical": "oklch(0.955 0.003 250)", "theme": "dark" },
+      "inverse-foreground-dark": { "role": "neutral", "displayName": "Inverse Paper (dark)", "canonical": "oklch(0.17 0.006 260)", "theme": "dark" }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "The name in the hero only." },
+      "headline": { "displayName": "Headline", "purpose": "Section headings from sm up." },
+      "headline-mobile": { "displayName": "Headline (mobile)", "purpose": "Section headings below sm." },
+      "title": { "displayName": "Title", "purpose": "Case-study project names." },
+      "title-sm": { "displayName": "Title Small", "purpose": "Experience roles, secondary project names." },
+      "body-lg": { "displayName": "Body Large", "purpose": "Hero role statement, section ledes, case summaries, About prose." },
+      "body": { "displayName": "Body", "purpose": "Highlights, descriptions, summaries." },
+      "ui": { "displayName": "UI", "purpose": "Nav links, chips, small links, fact labels." },
+      "label-mono": { "displayName": "Mono Label", "purpose": "Tech stacks, periods, counters; tabular figures." },
+      "label-frame": { "displayName": "Frame Caption", "purpose": "Window frame caption bar only." }
+    },
+    "shadows": [
+      { "name": "frame", "value": "0 1px 2px oklch(0.2 0.01 260 / 6%), 0 12px 32px -8px oklch(0.2 0.01 260 / 14%)", "valueDark": "0 1px 2px oklch(0 0 0 / 30%), 0 16px 40px -12px oklch(0 0 0 / 55%)", "cssVar": "--shadow-frame", "purpose": "Framed product screenshots only (hero frames, case-study main image)." }
+    ],
+    "focus": [
+      { "name": "focus-ring", "value": "outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px", "purpose": "Global :focus-visible treatment." }
+    ],
+    "motion": [
+      { "name": "ease-out-expo", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "All entrance animation." },
+      { "name": "rise", "value": "rise 0.24s cubic-bezier(0.16, 1, 0.3, 1) both; from { opacity: 0; transform: translateY(8px) }", "purpose": "Once-per-element entrance; hero stagger 40ms." },
+      { "name": "frame-in", "value": "frame-in 0.24s cubic-bezier(0.16, 1, 0.3, 1) both; from { opacity: 0; transform: translateY(8px); filter: blur(3px) }", "purpose": "Hero window frames entrance." },
+      { "name": "state-transition", "value": "150ms", "purpose": "Hover color/opacity/background changes on buttons and links." },
+      { "name": "reduced-motion", "value": "animation: none; scroll-behavior: auto", "purpose": "Applied under prefers-reduced-motion: reduce." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Inverse-filled main action (Telegram); one per group.",
+      "html": "<a class=\"ds-btn-primary\" href=\"#\"><svg width=\"17\" height=\"17\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z\"/><path d=\"m21.854 2.147-10.94 10.939\"/></svg>Написать в Telegram</a>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; gap: 10px; height: 48px; padding: 0 20px; border-radius: 8px; background: var(--inverse, oklch(0.21 0.012 260)); color: var(--inverse-foreground, oklch(0.985 0.002 250)); font-family: Onest, system-ui, sans-serif; font-weight: 500; font-size: 16px; text-decoration: none; transition: opacity 150ms; } .ds-btn-primary:hover { opacity: 0.85; } .ds-btn-primary:focus-visible { outline: 2px solid var(--accent, oklch(0.7 0.16 58)); outline-offset: 3px; }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Outlined companion action (résumé PDF).",
+      "html": "<a class=\"ds-btn-secondary\" href=\"#\"><svg width=\"17\" height=\"17\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z\"/><path d=\"M14 2v4a2 2 0 0 0 2 2h4\"/><path d=\"M10 9H8\"/><path d=\"M16 13H8\"/><path d=\"M16 17H8\"/></svg>Резюме (PDF)</a>",
+      "css": ".ds-btn-secondary { display: inline-flex; align-items: center; gap: 10px; height: 48px; padding: 0 20px; border-radius: 8px; border: 1px solid var(--border-strong, oklch(0.84 0.006 255)); background: var(--surface, oklch(1 0 0)); color: var(--foreground, oklch(0.21 0.012 260)); font-family: Onest, system-ui, sans-serif; font-weight: 500; font-size: 16px; text-decoration: none; transition: background-color 150ms; } .ds-btn-secondary:hover { background: var(--surface-2, oklch(0.965 0.003 250)); } .ds-btn-secondary:focus-visible { outline: 2px solid var(--accent, oklch(0.7 0.16 58)); outline-offset: 3px; }"
+    },
+    {
+      "name": "Text Link",
+      "kind": "button",
+      "refersTo": "link-inline",
+      "description": "Amber text link with arrow; underline appears on hover.",
+      "html": "<a class=\"ds-link\" href=\"#\">Код на GitHub<svg width=\"15\" height=\"15\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M7 7h10v10\"/><path d=\"M7 17 17 7\"/></svg></a>",
+      "css": ".ds-link { display: inline-flex; align-items: center; gap: 4px; color: var(--link, oklch(0.5 0.13 52)); font-family: Onest, system-ui, sans-serif; font-size: 14px; font-weight: 500; text-decoration: underline; text-decoration-color: transparent; text-decoration-thickness: 1px; text-underline-offset: 0.22em; transition: text-decoration-color 150ms; } .ds-link:hover { text-decoration-color: currentColor; } .ds-link:focus-visible { outline: 2px solid var(--accent, oklch(0.7 0.16 58)); outline-offset: 3px; border-radius: 4px; }"
+    },
+    {
+      "name": "Navigation",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Fixed translucent header with muted links; current section turns Ink.",
+      "html": "<header class=\"ds-nav\"><a class=\"ds-nav-brand\" href=\"#\">Владислав Акимов</a><nav><a class=\"ds-nav-link\" href=\"#\">Проекты</a><a class=\"ds-nav-link\" aria-current=\"location\" href=\"#\">Опыт</a><a class=\"ds-nav-link\" href=\"#\">Навыки</a><a class=\"ds-nav-link\" href=\"#\">Контакты</a></nav><a class=\"ds-nav-cta\" href=\"#\">Резюме</a></header>",
+      "css": ".ds-nav { display: flex; align-items: center; justify-content: space-between; gap: 24px; height: 64px; padding: 0 24px; border-bottom: 1px solid var(--border, oklch(0.91 0.004 255)); background: color-mix(in oklch, var(--background, oklch(0.985 0.002 250)) 70%, transparent); backdrop-filter: blur(12px); font-family: Onest, system-ui, sans-serif; } .ds-nav nav { display: flex; gap: 4px; } .ds-nav-brand { font-size: 15px; font-weight: 600; letter-spacing: -0.01em; color: var(--foreground, oklch(0.21 0.012 260)); text-decoration: none; } .ds-nav-link { padding: 8px 12px; border-radius: 8px; font-size: 14px; color: var(--muted, oklch(0.47 0.012 260)); text-decoration: none; transition: color 150ms; } .ds-nav-link:hover, .ds-nav-link[aria-current] { color: var(--foreground, oklch(0.21 0.012 260)); } .ds-nav-link:focus-visible { outline: 2px solid var(--accent, oklch(0.7 0.16 58)); outline-offset: 3px; } .ds-nav-cta { padding: 8px 14px; border-radius: 8px; background: var(--inverse, oklch(0.21 0.012 260)); color: var(--inverse-foreground, oklch(0.985 0.002 250)); font-size: 14px; font-weight: 500; text-decoration: none; transition: opacity 150ms; } .ds-nav-cta:hover { opacity: 0.85; }"
+    },
+    {
+      "name": "Status Chip",
+      "kind": "chip",
+      "refersTo": "status-chip",
+      "description": "Hairline pill with a status dot; dot fill/shape encodes status.",
+      "html": "<div class=\"ds-chip-row\"><span class=\"ds-chip\"><span class=\"ds-dot ds-dot-done\"></span>Готово</span><span class=\"ds-chip\"><span class=\"ds-dot ds-dot-client\"></span>Коммерческий проект</span><span class=\"ds-chip\"><span class=\"ds-dot ds-dot-offline\"></span>Демо офлайн</span><span class=\"ds-chip\"><span class=\"ds-dot ds-dot-progress\"></span>В разработке</span></div>",
+      "css": ".ds-chip-row { display: flex; flex-wrap: wrap; gap: 8px; } .ds-chip { display: inline-flex; align-items: center; gap: 8px; padding: 4px 10px; border: 1px solid var(--border, oklch(0.91 0.004 255)); border-radius: 9999px; font-family: Onest, system-ui, sans-serif; font-size: 12px; font-weight: 500; color: var(--muted, oklch(0.47 0.012 260)); } .ds-dot { width: 6px; height: 6px; border-radius: 9999px; box-sizing: border-box; } .ds-dot-done { background: var(--foreground, oklch(0.21 0.012 260)); } .ds-dot-client { background: var(--muted, oklch(0.47 0.012 260)); } .ds-dot-offline { border: 1px solid var(--muted, oklch(0.47 0.012 260)); background: transparent; } .ds-dot-progress { background: var(--accent, oklch(0.7 0.16 58)); }"
+    },
+    {
+      "name": "Window Frame",
+      "kind": "card",
+      "refersTo": "window-frame",
+      "description": "Screenshot as an app window: mono caption bar, hairline border, the one frame shadow.",
+      "html": "<figure class=\"ds-frame\"><figcaption class=\"ds-frame-cap\">Sift — оценка вакансии</figcaption><div class=\"ds-frame-well\"></div></figure>",
+      "css": ".ds-frame { margin: 0; width: 360px; overflow: hidden; border: 1px solid var(--border-strong, oklch(0.84 0.006 255)); border-radius: 12px; background: var(--surface, oklch(1 0 0)); box-shadow: var(--shadow-frame, 0 1px 2px oklch(0.2 0.01 260 / 6%), 0 12px 32px -8px oklch(0.2 0.01 260 / 14%)); } .ds-frame-cap { display: flex; align-items: center; height: 32px; padding: 0 12px; border-bottom: 1px solid var(--border, oklch(0.91 0.004 255)); background: var(--surface-2, oklch(0.965 0.003 250)); font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; color: var(--muted, oklch(0.47 0.012 260)); } .ds-frame-well { aspect-ratio: 16 / 10; background: var(--surface-2, oklch(0.965 0.003 250)); }"
+    },
+    {
+      "name": "Gallery Thumbnail",
+      "kind": "custom",
+      "refersTo": "gallery-thumb",
+      "description": "16:10 thumbnail stepping a case gallery; active gets an Ink border and ring.",
+      "html": "<div class=\"ds-thumbs\"><button class=\"ds-thumb\" aria-pressed=\"true\" aria-label=\"Скриншот 1\"></button><button class=\"ds-thumb\" aria-pressed=\"false\" aria-label=\"Скриншот 2\"></button><button class=\"ds-thumb\" aria-pressed=\"false\" aria-label=\"Скриншот 3\"></button></div>",
+      "css": ".ds-thumbs { display: flex; gap: 8px; } .ds-thumb { width: 96px; aspect-ratio: 16 / 10; padding: 0; border-radius: 8px; border: 1px solid var(--border, oklch(0.91 0.004 255)); background: var(--surface-2, oklch(0.965 0.003 250)); cursor: pointer; transition: border-color 150ms, box-shadow 150ms; } .ds-thumb:hover { border-color: var(--border-strong, oklch(0.84 0.006 255)); } .ds-thumb[aria-pressed=\"true\"] { border-color: var(--foreground, oklch(0.21 0.012 260)); box-shadow: 0 0 0 1px var(--foreground, oklch(0.21 0.012 260)); } .ds-thumb:focus-visible { outline: 2px solid var(--accent, oklch(0.7 0.16 58)); outline-offset: 3px; }"
+    },
+    {
+      "name": "Note Panel",
+      "kind": "custom",
+      "refersTo": "note-panel",
+      "description": "Recessed panel for honest status caveats, with an info icon.",
+      "html": "<p class=\"ds-note\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><path d=\"M12 16v-4\"/><path d=\"M12 8h.01\"/></svg>Демо офлайн: сервер, на котором оно работало, отключён.</p>",
+      "css": ".ds-note { display: flex; gap: 10px; max-width: 420px; margin: 0; padding: 12px 14px; border-radius: 8px; background: var(--surface-2, oklch(0.965 0.003 250)); color: var(--muted, oklch(0.47 0.012 260)); font-family: Onest, system-ui, sans-serif; font-size: 14px; line-height: 1.625; } .ds-note svg { flex-shrink: 0; margin-top: 2px; }"
+    },
+    {
+      "name": "Lightbox Control",
+      "kind": "button",
+      "refersTo": "lightbox-control",
+      "description": "44px translucent-white control on the black lightbox stage.",
+      "html": "<div class=\"ds-lb-stage\"><button class=\"ds-lb-btn\" aria-label=\"Предыдущий скриншот\"><svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m15 18-6-6 6-6\"/></svg></button><span class=\"ds-lb-count\">2 / 5</span><button class=\"ds-lb-btn\" aria-label=\"Следующий скриншот\"><svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m9 18 6-6-6-6\"/></svg></button></div>",
+      "css": ".ds-lb-stage { display: inline-flex; align-items: center; gap: 16px; padding: 16px; background: rgb(0 0 0 / 0.9); color: #fff; } .ds-lb-btn { display: grid; place-items: center; width: 44px; height: 44px; border: 0; border-radius: 8px; background: rgb(255 255 255 / 0.1); color: #fff; cursor: pointer; transition: background-color 150ms; } .ds-lb-btn:hover { background: rgb(255 255 255 / 0.2); } .ds-lb-btn:focus-visible { outline: 2px solid var(--accent, oklch(0.79 0.14 66)); outline-offset: 3px; } .ds-lb-count { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 14px; font-variant-numeric: tabular-nums; color: rgb(255 255 255 / 0.6); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Product Page About a Person",
+    "overview": "The category standard played straight, at the craft level of Linear and Vercel. A cool, near-neutral ground in two equal themes, hairline structure, one warm amber signal and real product screenshots doing the persuading. Nothing is decorative: every border separates, every grey ranks information, and the only colour that is not grey means \"status, link or focus\".\n\nDensity is editorial rather than dashboard: a 1152px column, generous section padding (96px, 128px from md), and content split into an asymmetric two-column grid where a label or image column sits beside a reading column. Typography carries the hierarchy through size and weight alone; the display name is large and tightly tracked, metadata drops into small JetBrains Mono. Motion is a single short rise per element, once.\n\nRejected outright in this world: gradient type, typewriter effects, rotating rings, skill progress bars, violet glow, glass, and three equal CTAs.",
+    "keyCharacteristics": [
+      "Cool near-neutral ground (hue 250–260, chroma under 0.013) with light and dark as equals.",
+      "1px hairline borders as the primary structural device; two border strengths only.",
+      "One warm amber accent, reserved for status, links (as a darker/lighter amber) and focus.",
+      "Screenshots live inside thin window frames with a mono caption bar and one soft shadow.",
+      "Onest for everything readable, JetBrains Mono for small metadata.",
+      "Small corners (6/8/12px), pills only for status chips and dots.",
+      "240ms opacity + 8px rises, ease-out-expo, disabled under reduced motion."
+    ],
+    "rules": [
+      { "name": "The One Warm Voice Rule", "body": "Amber is the only chroma on the page. It marks state (open, in progress), navigation (links) and focus. If a new element wants colour for emphasis, use weight or Ink instead.", "section": "colors" },
+      { "name": "The Ink Button Rule", "body": "The primary action is filled with the inverse token, not with the accent. Hierarchy between actions comes from fill versus outline versus text, never from hue.", "section": "colors" },
+      { "name": "The Shape Carries Status Rule", "body": "Project status is told by dot fill and shape first (solid Ink = done, solid Pencil = client, hollow ring = offline, Amber = in progress), with the label always present.", "section": "colors" },
+      { "name": "The Tight Heading Rule", "body": "All h1–h3 get -0.03em tracking and balanced wrapping; the display name goes to -0.04em. Paragraphs use pretty wrapping.", "section": "typography" },
+      { "name": "The Mono Is Metadata Rule", "body": "JetBrains Mono never sets headings or prose. It appears at 11–14px for things a developer would read as data.", "section": "typography" },
+      { "name": "The Only Screenshots Float Rule", "body": "The frame shadow is reserved for product imagery. Buttons, chips, panels and sections never cast shadows.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do separate content with 1px hairlines (border / border-strong) instead of boxes.",
+      "Do keep Signal Amber to status dots, focus, caret and selection; use the link token for text links.",
+      "Do make the primary action an inverse-filled 48px button with 8px corners, paired with an outlined secondary.",
+      "Do present product screenshots in the window frame or a bordered 16:10 well, top-anchored.",
+      "Do set stacks, periods and counters in JetBrains Mono at 11–14px, stacks joined with \" · \".",
+      "Do ship both themes from the same token names and check AA contrast in each.",
+      "Do keep entrances to one opacity + 8px rise at 180–240ms, ease-out-expo, and honour reduced motion."
+    ],
+    "donts": [
+      "Don't use gradients on type, glow, glass panels, rotating or typewriter effects.",
+      "Don't show skill levels as progress bars or percentages.",
+      "Don't fill buttons or large areas with the amber accent.",
+      "Don't put shadows on anything but framed screenshots.",
+      "Don't add eyebrow labels or kickers above section headings; headings stand alone with an optional muted lede.",
+      "Don't introduce corners above 12px or pills other than status chips.",
+      "Don't wrap content groups in cards with backgrounds and shadows."
+    ]
+  }
+}

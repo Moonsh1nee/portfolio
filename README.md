@@ -1,32 +1,43 @@
 # Portfolio
 
-Personal portfolio — single-page, dark-theme by default, built with Next.js App Router. Served as a static export via GitHub Pages at [getgrip.ru](https://getgrip.ru).
+Personal portfolio of Vladislav Akimov — a single page for recruiters and tech leads: who he is, what level, where, how to reach him, and four case studies that back it up. Served as a static export on GitHub Pages at [getgrip.ru](https://getgrip.ru).
+
+## Why it looks like this
+
+The first version was a stock "dark dev portfolio": gradient name, typewriter tagline, rotating rings, 26 skill progress bars, projects buried four screens down. A design critique scored it 18/32, and the redesign went the other way — a calm, product-grade page (Linear/Vercel as the craft bar) where real screenshots and honest project status carry the argument instead of self-ratings.
+
+- **Person first, projects as proof.** The first screen answers name, role, level, city/format and contact; projects start right under it.
+- **Honest status.** "Демо офлайн", "Код приватный", "В разработке" are stated next to each project, not hidden.
+- **Light and dark as equals**, following the system setting; one amber accent for status, links and focus.
 
 ## Stack
 
-Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS v4, Framer Motion, Lenis (smooth scroll), `next-themes` (light/dark), React Compiler.
+Next.js 16 (App Router, static export), React 19, TypeScript, Tailwind CSS v4, `next-themes`, `lucide-react`, React Compiler. Fonts: Onest and JetBrains Mono via `next/font`.
 
 ## Structure
 
-- `src/lib/content.ts` — all editable content: projects, skills, experience, contact info, social links. Update this file to change what the site shows.
-- `src/components/sections/` — one component per page section (Hero, About, Skills, Projects, Experience, Contact, Footer), composed in `src/app/page.tsx`.
-- `src/components/sections/ProjectLightbox.tsx` — fullscreen project gallery (image carousel with click-to-zoom, full description, links) opened from a project card's screenshot preview.
-- `src/components/navigation/Navbar.tsx` — sticky nav with scroll-spy (`useActiveSection`) and theme toggle.
-- `public/projects/` — screenshot galleries, 4-5 images per project, referenced by `content.ts`.
+- `src/lib/content.ts` — all content in one place: person, projects (with per-screenshot notes), experience, education, skills, contacts.
+- `src/components/sections/` — Hero, Projects (`CaseStudy`, `ProjectLightbox`, `ProjectStatus`), Experience, Skills, About, Contact, Footer.
+- `src/components/navigation/Navbar.tsx` — sticky header with scroll-spy; the mobile menu panel lives outside the header on purpose: the header's `backdrop-filter` makes it the containing block for `position: fixed` children, which collapsed the panel to zero height.
+- `PRODUCT.md` / `DESIGN.md` — product truth and the design system the page is built on.
+
+## Technically interesting
+
+- **Lightbox on a native `<dialog>`** (`showModal`): focus trap and inert background come from the platform; arrows, swipe and Esc are layered on top, focus returns to the opener.
+- **Entrance motion is pure CSS** (`animate-rise` keyframes), so the hero animates before hydration and is disabled under `prefers-reduced-motion`.
+- **Images are prepared at source** — the static export has no image optimizer, so screenshots are WebP (4.5 MB of PNG → ~1.2 MB), with the Next.js dev badge painted out, and every raster carries its origin in embedded metadata.
 
 ## Getting started
 
 ```bash
-npm install
-npm run dev
+bun install
+bun run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
+Open [http://localhost:3000](http://localhost:3000). Before committing: `bun run lint` and `npx tsc --noEmit`.
 
 ## Deployment
 
-Built with `output: "export"` (`next.config.ts`) — a fully static site, no Node runtime needed, so image optimization is disabled (`images.unoptimized: true`; images are pre-resized at source instead).
+`output: "export"` in `next.config.ts` produces a fully static site in `out/`. `.github/workflows/deploy.yml` builds on every push to `master` and publishes it via `actions/deploy-pages`; `public/CNAME` points the deployment at `getgrip.ru`. `NEXT_PUBLIC_SITE_URL` (default `https://getgrip.ru`, see `src/lib/site.ts`) feeds `metadataBase`, Open Graph, `robots.ts` and `sitemap.ts`.
 
-`.github/workflows/deploy.yml` builds on every push to `master` and publishes `out/` to GitHub Pages via `actions/deploy-pages`. `public/CNAME` points the Pages deployment at the custom domain `getgrip.ru` (DNS: A records to GitHub Pages' IPs). `NEXT_PUBLIC_SITE_URL` (see `src/lib/site.ts`) is set to `https://getgrip.ru` in the workflow — it feeds `metadataBase`, Open Graph tags, `robots.ts` and `sitemap.ts`.
-
-To preview the static export locally: `npm run build && npx serve out`.
+Preview the export locally: `bun run build && npx serve out`.
