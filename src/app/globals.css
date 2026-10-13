@@ -128,6 +128,29 @@
   }
 }
 
+/* Screenshot swap: the new image settles in from a slight blur, so a thumbnail
+   click reads as "same frame, next picture" instead of a hard cut. */
+@keyframes shot-in {
+  from {
+    opacity: 0;
+    filter: blur(4px);
+  }
+}
+
+/* Lightbox step: --shot-dir is 1 (next) or -1 (previous). */
+@keyframes shot-step {
+  from {
+    opacity: 0;
+    transform: translateX(calc(var(--shot-dir, 0) * 24px));
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
 @utility animate-rise {
   animation: rise 0.24s var(--ease-out-expo) both;
 }
@@ -136,10 +159,44 @@
   animation: frame-in 0.24s var(--ease-out-expo) both;
 }
 
+@utility animate-shot-in {
+  animation: shot-in 0.28s var(--ease-out-expo) both;
+}
+
+@utility animate-shot-step {
+  animation: shot-step 0.3s var(--ease-out-expo) both;
+}
+
+@utility animate-fade-in {
+  animation: fade-in 0.2s var(--ease-out-expo) both;
+}
+
+/* Lightbox open: backdrop and content fade in together. */
+dialog[open].lightbox {
+  animation: fade-in 0.22s var(--ease-out-expo) both;
+}
+
+dialog[open].lightbox::backdrop {
+  animation: fade-in 0.22s var(--ease-out-expo) both;
+}
+
+/* Theme switch: a short cross-fade of the whole page instead of a hard flip. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.24s;
+  animation-timing-function: var(--ease-out-expo);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-rise,
   .animate-frame-in {
     animation: none;
+  }
+
+  /* Keep the cross-fades (they explain state), drop spatial movement and blur. */
+  .animate-shot-in,
+  .animate-shot-step {
+    animation-name: fade-in;
   }
 }
 

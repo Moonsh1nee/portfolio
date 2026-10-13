@@ -33,7 +33,7 @@ export default function Hero() {
               href={CONTACT_TELEGRAM_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex h-12 items-center gap-2.5 rounded-md bg-inverse px-5 font-medium text-inverse-foreground transition-opacity duration-150 hover:opacity-85"
+              className="inline-flex h-12 w-full items-center justify-center gap-2.5 rounded-md bg-inverse px-5 font-medium text-inverse-foreground transition-opacity duration-150 hover:opacity-85 sm:w-auto"
             >
               <Send aria-hidden size={17} />
               Написать в Telegram
@@ -42,7 +42,7 @@ export default function Hero() {
               href={RESUME_PDF_URL}
               target="_blank"
               rel="noopener"
-              className="inline-flex h-12 items-center gap-2.5 rounded-md border border-border-strong bg-surface px-5 font-medium transition-colors duration-150 hover:bg-surface-2"
+              className="inline-flex h-12 flex-1 items-center justify-center gap-2.5 rounded-md border border-border-strong bg-surface px-5 font-medium transition-colors duration-150 hover:bg-surface-2 sm:flex-none"
             >
               <FileText aria-hidden size={17} />
               Резюме (PDF)

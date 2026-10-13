@@ -302,7 +302,7 @@ Main 16:10 image in a framed button; hover scales the image to 1.015 and reveals
 Native modal dialog over a 90% black backdrop with a small blur. White text; a top bar with the project title and a mono "n / total" counter; 44px controls on 10% white that rise to 20% on hover; image contained at 16:10 up to 1152px; caption and note below in a polite live region. Arrow keys, swipe (50px threshold), Esc and backdrop click all work; focus returns to the opener.
 
 ### Motion
-Only the hero enters: opacity plus 8px rise, 240ms, ease-out-expo `cubic-bezier(0.16, 1, 0.3, 1)`, staggered 40ms in the hero; hero frames add a 3px blur-in. Hover state transitions are 150–200ms. Below the hero nothing is hidden by default — a scroll-triggered reveal left content invisible in review and was removed. All entrance animation and smooth scrolling switch off under prefers-reduced-motion.
+Only the hero enters: opacity plus 8px rise, 240ms, ease-out-expo `cubic-bezier(0.16, 1, 0.3, 1)`, staggered 40ms in the hero; hero frames add a 3px blur-in. Hover state transitions are 150–200ms. Beyond that, motion only explains state changes: a case screenshot swap settles in from a 4px blur (280ms); the lightbox fades in with its backdrop (220ms) and each step slides 24px from the side it came from (300ms) while the caption cross-fades; the mobile menu sheet fades in with its rows rising 30ms apart; the theme toggle cross-fades the page through a View Transition (240ms). Under reduced motion the swaps keep only the opacity fade. Below the hero nothing is hidden by default — a scroll-triggered reveal left content invisible in review and was removed. All entrance animation and smooth scrolling switch off under prefers-reduced-motion.
 
 ## Do's and Don'ts
 

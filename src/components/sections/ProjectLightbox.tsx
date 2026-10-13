@@ -19,9 +19,14 @@ export default function ProjectLightbox({
   const dialogRef = useRef<HTMLDialogElement>(null);
   const swipeStart = useRef<number | null>(null);
   const [index, setIndex] = useState(initialIndex);
+  // Direction of the last step (1 next, -1 previous, 0 on open) picks the side the image slides in from.
+  const [dir, setDir] = useState(0);
   const shots = project.screenshots;
   const count = shots.length;
-  const go = (delta: number) => setIndex((i) => (i + delta + count) % count);
+  const go = (delta: number) => {
+    setDir(delta);
+    setIndex((i) => (i + delta + count) % count);
+  };
 
   useEffect(() => {
     const dialog = dialogRef.current;
@@ -37,8 +42,10 @@ export default function ProjectLightbox({
 
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "ArrowRight") setIndex((i) => (i + 1) % count);
-      if (e.key === "ArrowLeft") setIndex((i) => (i - 1 + count) % count);
+      if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+      const delta = e.key === "ArrowRight" ? 1 : -1;
+      setDir(delta);
+      setIndex((i) => (i + delta + count) % count);
     };
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
@@ -55,7 +62,7 @@ export default function ProjectLightbox({
         onClose();
       }}
       onClick={(e) => e.target === e.currentTarget && onClose()}
-      className="m-0 h-dvh max-h-none w-screen max-w-none bg-transparent p-0 text-white backdrop:bg-black/90 backdrop:backdrop-blur-sm"
+      className="lightbox m-0 h-dvh max-h-none w-screen max-w-none bg-transparent p-0 text-white backdrop:bg-black/90 backdrop:backdrop-blur-sm"
     >
       <div
         className="flex h-full flex-col"
@@ -89,7 +96,16 @@ export default function ProjectLightbox({
 
         <div className="relative flex min-h-0 flex-1 items-center justify-center px-2 sm:px-16" onClick={(e) => e.target === e.currentTarget && onClose()}>
           <div className="relative aspect-16/10 max-h-full w-full max-w-6xl touch-pan-y">
-            <Image key={shot.src} src={shot.src} alt={shot.alt} fill sizes="100vw" className="object-contain" draggable={false} />
+            <Image
+              key={shot.src}
+              src={shot.src}
+              alt={shot.alt}
+              fill
+              sizes="100vw"
+              className="animate-shot-step object-contain"
+              style={{ "--shot-dir": dir } as React.CSSProperties}
+              draggable={false}
+            />
           </div>
 
           {count > 1 && (
@@ -116,8 +132,11 @@ export default function ProjectLightbox({
 
         <div className="flex items-center justify-between gap-4 px-4 pt-3 pb-5 sm:px-6">
           <div aria-live="polite" className="max-w-3xl">
-            <p className="text-sm font-medium text-white">{shot.alt}</p>
-            <p className="mt-1 text-sm leading-relaxed text-white/70">{shot.note}</p>
+            {/* Keyed inner block re-runs the fade per shot without remounting the live region. */}
+            <div key={shot.src} className="animate-fade-in">
+              <p className="text-sm font-medium text-white">{shot.alt}</p>
+              <p className="mt-1 text-sm leading-relaxed text-white/70">{shot.note}</p>
+            </div>
           </div>
           {count > 1 && (
             <div className="flex shrink-0 gap-2 sm:hidden">

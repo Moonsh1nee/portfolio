@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { flushSync } from "react-dom";
 import { Menu, X, Sun, Moon, FileText } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useActiveSection } from "@/hooks/useActiveSection";
@@ -71,6 +72,15 @@ export default function Navbar() {
 
   const isDark = resolvedTheme === "dark";
 
+  const toggleTheme = () => {
+    const next = isDark ? "light" : "dark";
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!document.startViewTransition || reduce) return setTheme(next);
+    // Cross-fade the whole page. next-themes applies the html class in an effect,
+    // so flushSync makes the new theme land inside the transition callback.
+    document.startViewTransition(() => flushSync(() => setTheme(next)));
+  };
+
   return (
     <>
     <header className="fixed inset-x-0 top-0 z-50 border-b border-border bg-background/85 backdrop-blur-md supports-backdrop-filter:bg-background/70">
@@ -103,7 +113,7 @@ export default function Navbar() {
         <div className="flex items-center gap-1.5">
           <button
             type="button"
-            onClick={() => setTheme(isDark ? "light" : "dark")}
+            onClick={toggleTheme}
             aria-label={mounted ? (isDark ? "Включить светлую тему" : "Включить тёмную тему") : "Переключить тему"}
             className="grid size-10 place-items-center rounded-md text-muted transition-colors duration-150 hover:bg-surface-2 hover:text-foreground"
           >
@@ -137,19 +147,23 @@ export default function Navbar() {
         <div
           ref={panelRef}
           id="mobile-menu"
-          className="fixed inset-x-0 top-16 bottom-0 z-40 overflow-y-auto bg-background md:hidden"
+          className="animate-fade-in fixed inset-x-0 top-16 bottom-0 z-40 overflow-y-auto bg-background md:hidden"
         >
           <nav aria-label="Мобильная навигация" className="px-4 pt-4 pb-10">
             <ul>
-              {navLinks.map((link) => (
-                <li key={link.href} className="border-b border-border">
+              {navLinks.map((link, i) => (
+                <li
+                  key={link.href}
+                  className="animate-rise border-b border-border"
+                  style={{ animationDelay: `${i * 30}ms` }}
+                >
                   <a href={link.href} onClick={() => setOpen(false)} className="block py-4 text-2xl font-medium tracking-[-0.02em]">
                     {link.label}
                   </a>
                 </li>
               ))}
             </ul>
-            <div className="mt-8 grid gap-3">
+            <div className="animate-rise mt-8 grid gap-3 [animation-delay:150ms]">
               <a
                 href={CONTACT_TELEGRAM_URL}
                 target="_blank"

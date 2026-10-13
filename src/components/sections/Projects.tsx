@@ -49,9 +49,9 @@ export default function Projects() {
                 type="button"
                 onClick={() => setGallery({ project, index: 0 })}
                 aria-label={`Открыть скриншоты ${project.title}`}
-                className="relative aspect-16/10 overflow-hidden rounded-md border border-border-strong bg-surface-2"
+                className="group relative aspect-16/10 overflow-hidden rounded-md border border-border-strong bg-surface-2"
               >
-                <Image src={project.screenshots[0].src} alt={project.screenshots[0].alt} fill sizes="(min-width: 640px) 200px, 100vw" className="object-cover object-top" />
+                <Image src={project.screenshots[0].src} alt={project.screenshots[0].alt} fill sizes="(min-width: 640px) 200px, 100vw" className="object-cover object-top transition-transform duration-200 ease-out group-hover:scale-[1.03]" />
               </button>
               <div className="min-w-0">
                 <div className="flex flex-wrap items-center gap-3">
@@ -66,7 +66,7 @@ export default function Projects() {
                       href={project.repoUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 text-sm font-medium text-link underline decoration-transparent transition-colors duration-150 hover:decoration-current"
+                      className="inline-flex min-h-11 items-center gap-1 text-sm font-medium text-link underline decoration-transparent transition-colors duration-150 hover:decoration-current"
                     >
                       Код
                       <ArrowUpRight aria-hidden size={14} />

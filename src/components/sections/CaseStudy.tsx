@@ -17,11 +17,21 @@ export default function CaseStudy({
   const current = project.screenshots[index];
 
   return (
+    // Three grid children so the title leads on mobile (title → image → details),
+    // while on desktop the image spans both rows of the left column.
     <article
       aria-labelledby={`${project.slug}-title`}
-      className="grid gap-8 border-t border-border pt-10 lg:grid-cols-[1.2fr_1fr] lg:gap-12 lg:pt-14"
+      className="grid gap-x-12 gap-y-6 border-t border-border pt-10 lg:grid-cols-[1.2fr_1fr] lg:grid-rows-[auto_1fr] lg:gap-y-0 lg:pt-14"
     >
-      <div className="min-w-0">
+      <div className="flex min-w-0 flex-wrap items-center gap-3 lg:col-start-2 lg:row-start-1">
+        <h3 id={`${project.slug}-title`} className="text-3xl font-semibold">
+          {project.title}
+        </h3>
+        <ProjectStatusMark status={project.status} />
+        {project.period && <span className="font-mono text-xs text-muted tabular">{project.period}</span>}
+      </div>
+
+      <div className="min-w-0 lg:col-start-1 lg:row-span-2 lg:row-start-1">
         <button
           type="button"
           onClick={() => onOpenGallery(index)}
@@ -35,7 +45,7 @@ export default function CaseStudy({
               alt={current.alt}
               fill
               sizes="(min-width: 1024px) 620px, 100vw"
-              className="object-cover object-top transition-transform duration-200 ease-out group-hover:scale-[1.015]"
+              className="animate-shot-in object-cover object-top transition-transform duration-200 ease-out group-hover:scale-[1.015]"
             />
           </span>
           <span className="absolute right-3 bottom-3 inline-flex items-center gap-1.5 rounded-md bg-black/65 px-2.5 py-1.5 text-xs font-medium text-white opacity-0 transition-opacity duration-200 group-hover:opacity-100 group-focus-visible:opacity-100">
@@ -44,7 +54,11 @@ export default function CaseStudy({
           </span>
         </button>
 
-        <div className="mt-3 flex gap-2 overflow-x-auto pb-1" role="group" aria-label={`Скриншоты ${project.title}`}>
+        <div
+          className="-mx-4 mt-3 flex snap-x scroll-px-4 gap-2 overflow-x-auto px-4 pb-1 [scrollbar-width:none] sm:mx-0 sm:px-0 [&::-webkit-scrollbar]:hidden"
+          role="group"
+          aria-label={`Скриншоты ${project.title}`}
+        >
           {project.screenshots.map((shot, i) => (
             <button
               key={shot.src}
@@ -52,8 +66,10 @@ export default function CaseStudy({
               onClick={() => setIndex(i)}
               aria-pressed={i === index}
               aria-label={shot.alt}
-              className={`relative aspect-16/10 w-20 shrink-0 overflow-hidden rounded-md border transition-[border-color,box-shadow] duration-150 sm:w-24 ${
-                i === index ? "border-foreground ring-1 ring-foreground" : "border-border hover:border-border-strong"
+              className={`relative aspect-16/10 w-20 shrink-0 snap-start overflow-hidden rounded-md border transition-[border-color,box-shadow] duration-150 sm:w-24 ${
+                i === index
+                  ? "border-foreground ring-1 ring-foreground"
+                  : "border-border hover:border-border-strong"
               }`}
             >
               <Image src={shot.src} alt="" fill sizes="96px" className="object-cover object-top" />
@@ -62,16 +78,8 @@ export default function CaseStudy({
         </div>
       </div>
 
-      <div className="min-w-0">
-        <div className="flex flex-wrap items-center gap-3">
-          <h3 id={`${project.slug}-title`} className="text-3xl font-semibold">
-            {project.title}
-          </h3>
-          <ProjectStatusMark status={project.status} />
-          {project.period && <span className="font-mono text-xs text-muted tabular">{project.period}</span>}
-        </div>
-
-        <p className="mt-4 text-lg leading-relaxed">{project.summary}</p>
+      <div className="min-w-0 lg:col-start-2 lg:row-start-2">
+        <p className="text-lg leading-relaxed lg:mt-4">{project.summary}</p>
 
         <ul className="mt-6 space-y-3.5">
           {project.highlights.map((item) => (
@@ -91,19 +99,19 @@ export default function CaseStudy({
 
         <p className="mt-6 font-mono text-xs leading-relaxed text-muted">{project.stack.join(" · ")}</p>
 
-        <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm font-medium">
+        <div className="mt-4 flex flex-wrap items-center gap-x-6 text-sm font-medium">
           {project.repoUrl ? (
             <a
               href={project.repoUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-link underline decoration-transparent transition-colors duration-150 hover:decoration-current"
+              className="inline-flex min-h-11 items-center gap-1 text-link underline decoration-transparent transition-colors duration-150 hover:decoration-current"
             >
               Код на GitHub
               <ArrowUpRight aria-hidden size={15} />
             </a>
           ) : (
-            <span className="inline-flex items-center gap-1.5 text-muted">
+            <span className="inline-flex min-h-11 items-center gap-1.5 text-muted">
               <Lock aria-hidden size={14} />
               Код приватный
             </span>
@@ -111,7 +119,7 @@ export default function CaseStudy({
           <button
             type="button"
             onClick={() => onOpenGallery(0)}
-            className="text-muted transition-colors duration-150 hover:text-foreground"
+            className="min-h-11 text-muted transition-colors duration-150 hover:text-foreground"
           >
             Все скриншоты ({project.screenshots.length})
           </button>

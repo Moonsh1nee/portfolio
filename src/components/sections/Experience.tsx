@@ -18,7 +18,7 @@ export default function Experience() {
               <div className="max-w-3xl">
                 <h3 className="text-xl font-semibold">{entry.role}</h3>
                 <p className="mt-1 text-muted">{entry.place}</p>
-                <p className="mt-4 leading-relaxed">{entry.description}</p>
+                <p className="mt-4 max-w-[68ch] leading-relaxed">{entry.description}</p>
                 <p className="mt-4 font-mono text-xs text-muted">{entry.stack.join(" · ")}</p>
               </div>
             </li>
